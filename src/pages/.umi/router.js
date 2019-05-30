@@ -2,7 +2,7 @@ import React from 'react';
 import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/_renderRoutes';
-import RendererWrapper0 from 'D:/workspace/my-project/src/pages/.umi/LocaleWrapper.jsx'
+import RendererWrapper0 from 'D:/workspace/ant_wms/my-project/src/pages/.umi/LocaleWrapper.jsx'
 import _dvaDynamic from 'dva/dynamic'
 
 let Router = require('dva/router').routerRedux.ConnectedRouter;
@@ -13,7 +13,7 @@ let routes = [
     "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "layouts__UserLayout" */'../../layouts/UserLayout'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
     "routes": [
       {
@@ -27,10 +27,10 @@ let routes = [
         "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
+  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/ant_wms/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__User__Login" */'../User/Login'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
         "exact": true
       },
@@ -40,10 +40,10 @@ models: () => [
         "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
+  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/ant_wms/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__User__Register" */'../User/Register'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
         "exact": true
       },
@@ -53,10 +53,10 @@ models: () => [
         "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
+  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/ant_wms/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__User__RegisterResult" */'../User/RegisterResult'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
         "exact": true
       },
@@ -64,12 +64,12 @@ models: () => [
         "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__404" */'../404'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
         "exact": true
       },
       {
-        "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+        "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
       }
     ]
   },
@@ -78,7 +78,7 @@ models: () => [
     "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../../layouts/BasicLayout'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
     "Routes": [require('../Authorized').default],
     "routes": [
@@ -102,12 +102,12 @@ models: () => [
             "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__Workplace__Panel" */'../Workplace/Panel'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
             "exact": true
           },
           {
-            "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+            "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
           }
         ]
       },
@@ -131,12 +131,12 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouse.js' */'D:/workspace/my-project/src/pages/Basicdata/Warehouse/models/warehouse.js').then(m => { return { namespace: 'warehouse',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouseType.js' */'D:/workspace/my-project/src/pages/Basicdata/Warehouse/models/warehouseType.js').then(m => { return { namespace: 'warehouseType',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouse.js').then(m => { return { namespace: 'warehouse',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouseType.js').then(m => { return { namespace: 'warehouseType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Warehouse/Administration'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
@@ -146,17 +146,17 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouse.js' */'D:/workspace/my-project/src/pages/Basicdata/Warehouse/models/warehouse.js').then(m => { return { namespace: 'warehouse',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouseType.js' */'D:/workspace/my-project/src/pages/Basicdata/Warehouse/models/warehouseType.js').then(m => { return { namespace: 'warehouseType',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouse.js').then(m => { return { namespace: 'warehouse',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouseType.js').then(m => { return { namespace: 'warehouseType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Warehouse/Type'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -175,11 +175,11 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Storehouse/Administration'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
@@ -189,16 +189,16 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Storehouse/Type'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -208,10 +208,10 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Equipment" */'../Basicdata/Equipment'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
             "exact": true
           },
@@ -230,11 +230,11 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/Supplier/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Supplier/Administration'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
@@ -244,16 +244,16 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/Supplier/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Supplier/Type'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -263,10 +263,10 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Customer" */'../Basicdata/Customer'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
             "exact": true
           },
@@ -276,10 +276,10 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Measurement" */'../Basicdata/Measurement'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
             "exact": true
           },
@@ -289,10 +289,10 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Product" */'../Basicdata/Product'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
             "exact": true
           },
@@ -302,15 +302,15 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Carrier" */'../Basicdata/Carrier'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
             "exact": true
           },
           {
-            "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+            "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
           }
         ]
       },
@@ -334,10 +334,10 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Operation__Enter__models__rule.js' */'D:/workspace/my-project/src/pages/Operation/Enter/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Operation__Enter__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Operation/Enter/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Enter/Administration'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
@@ -347,10 +347,10 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Operation__Enter__models__rule.js' */'D:/workspace/my-project/src/pages/Operation/Enter/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Operation__Enter__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Operation/Enter/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Enter/Type'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
@@ -360,15 +360,15 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Operation__Enter__models__rule.js' */'D:/workspace/my-project/src/pages/Operation/Enter/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Operation__Enter__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Operation/Enter/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Enter/Detail'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -387,10 +387,10 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Operation__Out__models__rule.js' */'D:/workspace/my-project/src/pages/Operation/Out/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Operation__Out__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Operation/Out/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Out/Administration'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
@@ -400,10 +400,10 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Operation__Out__models__rule.js' */'D:/workspace/my-project/src/pages/Operation/Out/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Operation__Out__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Operation/Out/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Out/Type'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
@@ -413,20 +413,20 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Operation__Out__models__rule.js' */'D:/workspace/my-project/src/pages/Operation/Out/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
+  import(/* webpackChunkName: 'p__Operation__Out__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Operation/Out/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Out/Detail'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
           {
-            "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+            "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
           }
         ]
       },
@@ -460,7 +460,7 @@ models: () => [
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -489,12 +489,12 @@ models: () => [
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
           {
-            "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+            "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
           }
         ]
       },
@@ -502,17 +502,17 @@ models: () => [
         "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "p__404" */'../404'),
-  LoadingComponent: require('D:/workspace/my-project/src/components/PageLoading/index').default,
+  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
         "exact": true
       },
       {
-        "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+        "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
       }
     ]
   },
   {
-    "component": () => React.createElement(require('D:/workspace/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+    "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
   }
 ];
 window.g_routes = routes;

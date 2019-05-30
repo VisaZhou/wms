@@ -2,7 +2,7 @@ import { stringify } from 'qs';
 import request from '@/utils/request';
 
 export async function queryWarehouseType(params) {
-  return request(`/api/warehouseType?${stringify(params)}`);
+  return request(`/api/storageType/list?${stringify(params)}`);
 }
 
 export async function removeWarehouseType(params) {

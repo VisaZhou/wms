@@ -10,10 +10,7 @@ export default {
   namespace: 'warehouseType',
 
   state: {
-    data: {
       list: [],
-      pagination: {},
-    },
   },
 
   effects: {

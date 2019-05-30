@@ -5,56 +5,56 @@ let tableListDataSource = [];
 for (let i = 0; i < 4; i += 1) {
   if (i === 0) {
     tableListDataSource.push({
-      key: 0,
-      id: '000000001',
+      id: 0,
+      number: '000000001',
       name: '测试仓库3',
-      category: 'test1',
-      department: '设备部',
-      rentTime: '1970-01-01',
+      typeName: 'test1',
+      departmentName: '设备部',
+      leaseTime: '1970-01-01',
       area: 500,
-      link: 'zoubiao',
+      contact: 'zoubiao',
       phone: '66668888',
       address: '-',
     });
   }
   if (i === 1) {
     tableListDataSource.push({
-      key: 1,
-      id: '000000002',
+      id: 1,
+      number: '000000002',
       name: 'test',
-      category: 'test2',
-      department: '人事部',
-      rentTime: '2018-03-22',
+      typeName: 'test2',
+      departmentName: '人事部',
+      leaseTime: '2018-03-22',
       area: 1000,
-      link: 'test',
+      contact: 'test',
       phone: 'test',
       address: 'test',
     });
   }
   if (i === 2) {
     tableListDataSource.push({
-      key: 2,
-      id: '000000003',
+      id: 2,
+      number: '000000003',
       name: 'storage2',
-      category: 'test1',
-      department: '人事部',
-      rentTime: '2018-01-23',
+      typeName: 'test1',
+      departmentName: '人事部',
+      leaseTime: '2018-01-23',
       area: 2222,
-      link: '2222',
+      contact: '2222',
       phone: '2222',
       address: '2222',
     });
   }
   if (i === 3) {
     tableListDataSource.push({
-      key: 3,
-      id: '000000004',
+      id: 3,
+      number: '000000004',
       name: 'storage',
-      category: 'test2',
-      department: '人事部',
-      rentTime: '2018-01-11',
+      typeName: 'test2',
+      departmentName: '人事部',
+      leaseTime: '2018-01-11',
       area: 3333,
-      link: '3333',
+      contact: '3333',
       phone: '3333',
       address: '3333',
     });
@@ -96,13 +96,13 @@ function getWarehouse(req, res, u) {
     dataSource = dataSource.filter(data => data.name.indexOf(params.name) > -1);
   }
   if (params.id) {
-    dataSource = dataSource.filter(data => data.id.indexOf(params.id) > -1);
+    dataSource = dataSource.filter(data => data.number.indexOf(params.number) > -1);
   }
   if (params.department) {
-    dataSource = dataSource.filter(data => data.department === params.department);
+    dataSource = dataSource.filter(data => data.departmentName === params.departmentName);
   }
   if (params.category) {
-    dataSource = dataSource.filter(data => data.category === params.category);
+    dataSource = dataSource.filter(data => data.typeName === params.typeName);
   }
   let pageSize = 10;
   if (params.pageSize) {
@@ -128,36 +128,36 @@ function postWarehouse(req, res, u, b) {
   }
 
   const body = (b && b.body) || req.body;
-  const { method, key, name, category, department, rentTime, area, link, phone, address } = body;
+  const { method,number, name, typeName, departmentName, leaseTime, area, contact, phone, address } = body;
 
   switch (method) {
     /* eslint no-case-declarations:0 */
     case 'delete':
-      tableListDataSource = tableListDataSource.filter(item => key !== item.key);
+      tableListDataSource = tableListDataSource.filter(item => id !== item.id);
       break;
     case 'batchDelete':
-      tableListDataSource = tableListDataSource.filter(item => key.indexOf(item.key) === -1);
+      tableListDataSource = tableListDataSource.filter(item => id.indexOf(item.id) === -1);
       break;
     case 'post':
       const i = Math.ceil(Math.random() * 10000);
 
       tableListDataSource.unshift({
-        key: i,
         id: i,
+        number,
         name,
-        category,
-        department,
-        rentTime,
+        typeName,
+        departmentName,
+        leaseTime,
         area,
-        link,
+        contact,
         phone,
         address,
       });
       break;
     case 'update':
       tableListDataSource = tableListDataSource.map(item => {
-        if (item.key === key) {
-          Object.assign(item, { name, category, department, rentTime, area, link, phone, address });
+        if (item.id === id) {
+          Object.assign(item, { name,number, typeName, departmentName, leaseTime, area, contact, phone, address });
           return item;
         }
         return item;

@@ -18,22 +18,22 @@ import {
   message,
   Divider,
   Steps,
-  Radio,
+  Radio, Table,
 } from 'antd';
+import DescriptionList from '@/components/DescriptionList';
 import StandardTable from '@/components/StandardTable';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 import styles from './Administration.less';
 
+const { Description } = DescriptionList;
 const FormItem = Form.Item;
-const { Step } = Steps;
-const { TextArea } = Input;
 const { Option } = Select;
-const RadioGroup = Radio.Group;
 const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
     .join(',');
+
 
 const CreateForm = Form.create()(props => {
   const { modalVisible, form, handleAdd, handleModalVisible } = props;
@@ -127,6 +127,7 @@ const CreateForm = Form.create()(props => {
 
 @Form.create()
 class UpdateForm extends PureComponent {
+
   static defaultProps = {
     handleUpdate: () => {},
     handleUpdateModalVisible: () => {},
@@ -139,15 +140,8 @@ class UpdateForm extends PureComponent {
     this.state = {
       formVals: {
         name: props.values.name,
-        desc: props.values.desc,
         key: props.values.key,
-        target: '0',
-        template: '0',
-        type: '1',
-        time: '',
-        frequency: 'month',
       },
-      currentStep: 0,
     };
 
     this.formLayout = {
@@ -156,7 +150,7 @@ class UpdateForm extends PureComponent {
     };
   }
 
-  handleNext = currentStep => {
+  handleEdit = () => {
     const { form, handleUpdate } = this.props;
     const { formVals: oldValue } = this.state;
     form.validateFields((err, fieldsValue) => {
@@ -167,167 +161,175 @@ class UpdateForm extends PureComponent {
           formVals,
         },
         () => {
-          if (currentStep < 2) {
-            this.forward();
-          } else {
-            handleUpdate(formVals);
-          }
+          handleUpdate(formVals);
         }
       );
     });
   };
 
-  backward = () => {
-    const { currentStep } = this.state;
-    this.setState({
-      currentStep: currentStep - 1,
-    });
-  };
-
-  forward = () => {
-    const { currentStep } = this.state;
-    this.setState({
-      currentStep: currentStep + 1,
-    });
-  };
-
-  renderContent = (currentStep, formVals) => {
+  renderContent = formVals => {
     const { form } = this.props;
-    if (currentStep === 1) {
-      return [
-        <FormItem key="target" {...this.formLayout} label="监控对象">
-          {form.getFieldDecorator('target', {
-            initialValue: formVals.target,
-          })(
-            <Select style={{ width: '100%' }}>
-              <Option value="0">表一</Option>
-              <Option value="1">表二</Option>
-            </Select>
-          )}
-        </FormItem>,
-        <FormItem key="template" {...this.formLayout} label="规则模板">
-          {form.getFieldDecorator('template', {
-            initialValue: formVals.template,
-          })(
-            <Select style={{ width: '100%' }}>
-              <Option value="0">规则模板一</Option>
-              <Option value="1">规则模板二</Option>
-            </Select>
-          )}
-        </FormItem>,
-        <FormItem key="type" {...this.formLayout} label="规则类型">
-          {form.getFieldDecorator('type', {
-            initialValue: formVals.type,
-          })(
-            <RadioGroup>
-              <Radio value="0">强</Radio>
-              <Radio value="1">弱</Radio>
-            </RadioGroup>
-          )}
-        </FormItem>,
-      ];
-    }
-    if (currentStep === 2) {
-      return [
-        <FormItem key="time" {...this.formLayout} label="开始时间">
-          {form.getFieldDecorator('time', {
-            rules: [{ required: true, message: '请选择开始时间！' }],
-          })(
-            <DatePicker
-              style={{ width: '100%' }}
-              showTime
-              format="YYYY-MM-DD HH:mm:ss"
-              placeholder="选择开始时间"
-            />
-          )}
-        </FormItem>,
-        <FormItem key="frequency" {...this.formLayout} label="调度周期">
-          {form.getFieldDecorator('frequency', {
-            initialValue: formVals.frequency,
-          })(
-            <Select style={{ width: '100%' }}>
-              <Option value="month">月</Option>
-              <Option value="week">周</Option>
-            </Select>
-          )}
-        </FormItem>,
-      ];
-    }
     return [
-      <FormItem key="name" {...this.formLayout} label="规则名称">
+      <FormItem key="name" {...this.formLayout} label="仓库类型名称">
         {form.getFieldDecorator('name', {
-          rules: [{ required: true, message: '请输入规则名称！' }],
           initialValue: formVals.name,
         })(<Input placeholder="请输入" />)}
-      </FormItem>,
-      <FormItem key="desc" {...this.formLayout} label="规则描述">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-          initialValue: formVals.desc,
-        })(<TextArea rows={4} placeholder="请输入至少五个字符" />)}
       </FormItem>,
     ];
   };
 
-  renderFooter = currentStep => {
+  renderFooter = () => {
     const { handleUpdateModalVisible, values } = this.props;
-    if (currentStep === 1) {
-      return [
-        <Button key="back" style={{ float: 'left' }} onClick={this.backward}>
-          上一步
-        </Button>,
-        <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
-          取消
-        </Button>,
-        <Button key="forward" type="primary" onClick={() => this.handleNext(currentStep)}>
-          下一步
-        </Button>,
-      ];
-    }
-    if (currentStep === 2) {
-      return [
-        <Button key="back" style={{ float: 'left' }} onClick={this.backward}>
-          上一步
-        </Button>,
-        <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
-          取消
-        </Button>,
-        <Button key="submit" type="primary" onClick={() => this.handleNext(currentStep)}>
-          完成
-        </Button>,
-      ];
-    }
     return [
       <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
         取消
       </Button>,
-      <Button key="forward" type="primary" onClick={() => this.handleNext(currentStep)}>
-        下一步
+      <Button key="submit" type="primary" onClick={() => this.handleEdit()}>
+        确定
       </Button>,
     ];
   };
 
   render() {
     const { updateModalVisible, handleUpdateModalVisible, values } = this.props;
-    const { currentStep, formVals } = this.state;
 
+    const { profile = {}, loading } = this.props;
+    const { basicGoods = [], application = {} } = profile;
+    let goodsData = [];
+    if (basicGoods.length) {
+      let num = 0;
+      let amount = 0;
+      basicGoods.forEach(item => {
+        num += Number(item.num);
+        amount += Number(item.amount);
+      });
+      goodsData = basicGoods.concat({
+        id: '总计',
+        num,
+        amount,
+      });
+    }
+    const renderContent = (value, row, index) => {
+      const obj = {
+        children: value,
+        props: {},
+      };
+      if (index === basicGoods.length) {
+        obj.props.colSpan = 0;
+      }
+      return obj;
+    };
+    const goodsColumns = [
+      {
+        title: 'SKU',
+        dataIndex: 'id',
+        key: 'id',
+        render: (text, row, index) => {
+          if (index < basicGoods.length) {
+            return <a href="">{text}</a>;
+          }
+          return {
+            children: <span style={{ fontWeight: 600 }}>总计</span>,
+            props: {
+              colSpan: 4,
+            },
+          };
+        },
+      },
+      {
+        title: '品号',
+        dataIndex: 'name',
+        key: 'name',
+        render: renderContent,
+      },
+      {
+        title: '色号',
+        dataIndex: 'barcode',
+        key: 'barcode',
+        render: renderContent,
+      },
+      {
+        title: '规格',
+        dataIndex: 'price',
+        key: 'price',
+        align: 'right',
+        render: renderContent,
+      },
+      {
+        title: '批次',
+        dataIndex: 'num',
+        key: 'num',
+        align: 'right',
+        render: (text, row, index) => {
+          if (index < basicGoods.length) {
+            return text;
+          }
+          return <span style={{ fontWeight: 600 }}>{text}</span>;
+        },
+      },
+      {
+        title: '应收数量',
+        dataIndex: 'amount',
+        key: 'amount',
+        align: 'right',
+        render: (text, row, index) => {
+          if (index < basicGoods.length) {
+            return text;
+          }
+          return <span style={{ fontWeight: 600 }}>{text}</span>;
+        },
+      },
+      {
+        title: '实收数量',
+        dataIndex: 'amount',
+        key: 'amount',
+        align: 'right',
+        render: (text, row, index) => {
+          if (index < basicGoods.length) {
+            return text;
+          }
+          return <span style={{ fontWeight: 600 }}>{text}</span>;
+        },
+      },
+    ];
     return (
       <Modal
-        width={640}
+        width={1000}
         bodyStyle={{ padding: '32px 40px 48px' }}
         destroyOnClose
-        title="规则配置"
+        title="详细信息"
         visible={updateModalVisible}
-        footer={this.renderFooter(currentStep)}
+         footer={this.renderFooter()}
         onCancel={() => handleUpdateModalVisible(false, values)}
         afterClose={() => handleUpdateModalVisible()}
       >
-        <Steps style={{ marginBottom: 28 }} size="small" current={currentStep}>
-          <Step title="基本信息" />
-          <Step title="配置规则属性" />
-          <Step title="设定调度周期" />
-        </Steps>
-        {this.renderContent(currentStep, formVals)}
+          <Card bordered={false}>
+            <DescriptionList size="large" title="入库信息" style={{ marginBottom: 32 }}>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;入库单号">0000000015</Description>
+              <Description term="入库单类型">收货单</Description>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态">待审核</Description>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;制单人">超管</Description>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;制单日期">2018-08-03</Description>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仓库">测试仓库3</Description>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备注">{application.childOrderNo}</Description>
+            </DescriptionList>
+            <Divider style={{ marginBottom: 32 }} />
+            <DescriptionList size="large" title="供应商信息" style={{ marginBottom: 32 }}>
+              <Description term="供应商编号">00001</Description>
+              <Description term="供应商名称">无锡品冠</Description>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系人">ZL</Description>
+              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话">2222</Description>
+            </DescriptionList>
+            <Divider style={{ marginBottom: 32 }} />
+            <Table
+              style={{ marginBottom: 24 }}
+              pagination={false}
+              loading={loading}
+              dataSource={goodsData}
+              columns={goodsColumns}
+              rowKey="id"
+            />
+          </Card>
       </Modal>
     );
   }
@@ -681,6 +683,7 @@ class TableList extends PureComponent {
     const parentMethods = {
       handleAdd: this.handleAdd,
       handleModalVisible: this.handleModalVisible,
+      data:this.props,
     };
     const updateMethods = {
       handleUpdateModalVisible: this.handleUpdateModalVisible,
