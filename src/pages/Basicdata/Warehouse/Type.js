@@ -7,6 +7,7 @@ import {
   Card,
   Form,
   Input,
+  Select,
   Icon,
   Button,
   Dropdown,
@@ -24,31 +25,60 @@ const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
     .join(',');
-const CreateForm = Form.create()(props => {
-  const { modalVisible, form, handleAdd, handleModalVisible } = props;
-  const okHandle = () => {
+
+@Form.create()
+class CreateForm extends PureComponent {
+  static defaultProps = {
+    handleAdd: () => {},
+    handleModalVisible: () => {},
+    values: {},
+  };
+
+  constructor(props) {
+    super(props);
+    this.formLayout = {
+      labelCol: { span: 7 },
+      wrapperCol: { span: 13 },
+    };
+  }
+
+  renderContent = () => {
+    const { form } = this.props;
+    return [
+      <FormItem key="name" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="仓库类型名称">
+        {form.getFieldDecorator('name', {
+          rules: [{ required: true, message: '请输入至少五个字符！', min: 5 }],
+        })(<Input placeholder="请输入" />)}
+      </FormItem>,
+    ];
+  };
+
+  okHandle = () => {
+    const { form, handleAdd } = this.props;
     form.validateFields((err, fieldsValue) => {
       if (err) return;
       form.resetFields();
       handleAdd(fieldsValue);
     });
   };
-  return (
-    <Modal
-      destroyOnClose
-      title="新增仓库类型"
-      visible={modalVisible}
-      onOk={okHandle}
-      onCancel={() => handleModalVisible()}
-    >
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="仓库类型名称">
-        {form.getFieldDecorator('name', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-    </Modal>
-  );
-});
+
+  render() {
+    const { modalVisible, handleModalVisible } = this.props;
+    return (
+      <Modal
+        width={640}
+        bodyStyle={{ padding: '32px 40px 48px' }}
+        destroyOnClose
+        title="新增仓库类型"
+        visible={modalVisible}
+        onOk={this.okHandle}
+        onCancel={() => handleModalVisible()}
+      >
+        {this.renderContent()}
+      </Modal>
+    );
+  }
+}
 
 @Form.create()
 class UpdateForm extends PureComponent {
@@ -60,14 +90,12 @@ class UpdateForm extends PureComponent {
 
   constructor(props) {
     super(props);
-
     this.state = {
       formVals: {
+        id: props.values.id,
         name: props.values.name,
-        key: props.values.key,
       },
     };
-
     this.formLayout = {
       labelCol: { span: 7 },
       wrapperCol: { span: 13 },
@@ -94,8 +122,9 @@ class UpdateForm extends PureComponent {
   renderContent = formVals => {
     const { form } = this.props;
     return [
-      <FormItem key="name" {...this.formLayout} label="仓库类型名称">
+      <FormItem key="name" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="仓库类型名称">
         {form.getFieldDecorator('name', {
+          rules: [{ required: true, message: '请输入至少五个字符！', min: 5 }],
           initialValue: formVals.name,
         })(<Input placeholder="请输入" />)}
       </FormItem>,
@@ -117,7 +146,6 @@ class UpdateForm extends PureComponent {
   render() {
     const { updateModalVisible, handleUpdateModalVisible, values } = this.props;
     const { formVals } = this.state;
-
     return (
       <Modal
         width={640}
@@ -142,6 +170,7 @@ class UpdateForm extends PureComponent {
 }))
 @Form.create()
 class TableList extends PureComponent {
+  confirm  = Modal.confirm;
   state = {
     modalVisible: false,
     updateModalVisible: false,
@@ -150,7 +179,6 @@ class TableList extends PureComponent {
     formValues: {},
     stepFormValues: {},
   };
-
   columns = [
     {
       title: '仓库类型名称',
@@ -178,13 +206,11 @@ class TableList extends PureComponent {
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
     const { formValues } = this.state;
-
     const filters = Object.keys(filtersArg).reduce((obj, key) => {
       const newObj = { ...obj };
       newObj[key] = getValue(filtersArg[key]);
       return newObj;
     }, {});
-
     const params = {
       currentPage: pagination.current,
       pageSize: pagination.pageSize,
@@ -227,27 +253,43 @@ class TableList extends PureComponent {
   handleMenuClick = e => {
     const { dispatch } = this.props;
     const { selectedRows } = this.state;
-    const { confirm } = Modal.confirm;
-
     if (selectedRows.length === 0) return;
     switch (e.key) {
       case 'batchRemove':
-        confirm({
+        this.confirm({
           title: '您确定要删除这些记录吗?',
           okText: '确定',
           okType: 'danger',
           cancelText: '取消',
-          onOk() {
+          onOk:() => {
+            Modal.destroyAll();
             console.log('确定');
             dispatch({
               type: 'warehouseType/batchRemove',
               payload: {
-                key: selectedRows.map(row => row.key),
+                ids: selectedRows.map(row => row.id),
               },
-              callback: () => {
-                this.setState({
-                  selectedRows: [],
-                });
+              callback: (response) => {
+                const { ret , msg } = response
+                if(ret === 1){
+                  if(msg === 'error') {
+                    message.error('删除失败');
+                  }
+                  else {
+                    message.error(msg);
+                  }
+                }else {
+                  this.setState({
+                    selectedRows: [],
+                  });
+                  this.handleFormReset();
+                  if(msg === 'success') {
+                    message.success('删除成功');
+                  }
+                  else {
+                    message.success(msg);
+                  }
+                }
               },
             });
           },
@@ -291,7 +333,7 @@ class TableList extends PureComponent {
     });
   };
 
-  handleModalVisible = flag => {
+  handleModalVisible = (flag) => {
     this.setState({
       modalVisible: !!flag,
     });
@@ -311,50 +353,98 @@ class TableList extends PureComponent {
       payload: {
         name: fields.name,
       },
+      callback: (response) => {
+        const { ret , msg } = response
+        if(ret === 1){
+          if(msg === 'error') {
+            message.error('添加失败');
+          }
+          else {
+            message.error(msg);
+          }
+        }else {
+          this.handleFormReset();
+          if(msg === 'success') {
+            message.success('添加成功');
+          }
+          else {
+            message.success(msg);
+          }
+        }
+      },
     });
-
-    message.success('添加成功');
     this.handleModalVisible();
   };
 
   handleUpdate = fields => {
     const { dispatch } = this.props;
-    const { formValues } = this.state;
     dispatch({
       type: 'warehouseType/update',
       payload: {
-        query: formValues,
-        body: {
-          name: fields.name,
-          key: fields.key,
-        },
+        id: fields.id,
+        name: fields.name,
+      },
+      callback: (response) => {
+        const { ret , msg } = response
+        if(ret === 1){
+          if(msg === 'error') {
+            message.error('添加失败');
+          }
+          else {
+            message.error(msg);
+          }
+        }else {
+          this.handleFormReset();
+          if(msg === 'success') {
+            message.success('添加成功');
+          }
+          else {
+            message.success(msg);
+          }
+        }
       },
     });
-
-    message.success('编辑成功');
     this.handleUpdateModalVisible();
   };
 
+
   handleDelete(record) {
-    const { confirm } = Modal.confirm;
     const { dispatch } = this.props;
-    confirm({
+    this.confirm({
       title: '您确定要删除这条记录吗?',
       okText: '确定',
       okType: 'danger',
       cancelText: '取消',
-      onOk() {
-        console.log('确定');
+      onOk:() => {
+        console.log('OK');
         dispatch({
           type: 'warehouseType/remove',
           payload: {
-            key: record.key,
+            id: record.id,
+          },
+          callback: (response) => {
+            const { ret , msg } = response
+            if(ret === 1){
+              if(msg === 'error') {
+                message.error('删除失败');
+              }
+              else {
+                message.error(msg);
+              }
+            }else {
+              this.handleFormReset();
+              if(msg === 'success') {
+                message.success('删除成功');
+              }
+              else {
+                message.success(msg);
+              }
+            }
           },
         });
-        message.success('删除成功');
       },
       onCancel() {
-        console.log('取消');
+        console.log('Cancel');
       },
     });
   }
@@ -387,8 +477,7 @@ class TableList extends PureComponent {
   }
 
   renderForm() {
-    const { expandForm } = this.state;
-    return expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
+    return this.renderSimpleForm();
   }
 
   render() {
@@ -402,7 +491,6 @@ class TableList extends PureComponent {
         <Menu.Item key="batchRemove">批量删除</Menu.Item>
       </Menu>
     );
-
     const parentMethods = {
       handleAdd: this.handleAdd,
       handleModalVisible: this.handleModalVisible,
@@ -432,6 +520,7 @@ class TableList extends PureComponent {
             </div>
             <StandardTable
               selectedRows={selectedRows}
+              rowKey={record => record.id}
               loading={loading}
               data={data}
               columns={this.columns}

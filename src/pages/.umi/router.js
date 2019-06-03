@@ -9,86 +9,16 @@ let Router = require('dva/router').routerRedux.ConnectedRouter;
 
 let routes = [
   {
-    "path": "/user",
-    "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "layouts__UserLayout" */'../../layouts/UserLayout'),
-  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
-}),
-    "routes": [
-      {
-        "path": "/user",
-        "redirect": "/user/login",
-        "exact": true
-      },
-      {
-        "path": "/user/login",
-        "name": "login",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/ant_wms/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__User__Login" */'../User/Login'),
-  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "path": "/user/register",
-        "name": "register",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/ant_wms/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__User__Register" */'../User/Register'),
-  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "path": "/user/register-result",
-        "name": "register.result",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/workspace/ant_wms/my-project/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__User__RegisterResult" */'../User/RegisterResult'),
-  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__404" */'../404'),
-  LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "component": () => React.createElement(require('D:/workspace/ant_wms/my-project/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
-      }
-    ]
-  },
-  {
     "path": "/",
     "component": _dvaDynamic({
   
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../../layouts/BasicLayout'),
   LoadingComponent: require('D:/workspace/ant_wms/my-project/src/components/PageLoading/index').default,
 }),
-    "Routes": [require('../Authorized').default],
     "routes": [
       {
         "path": "/",
         "redirect": "/workplace/panel",
-        "authority": [
-          "admin",
-          "user"
-        ],
         "exact": true
       },
       {
@@ -176,6 +106,8 @@ models: () => [
   app: window.g_app,
 models: () => [
   import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouse.js').then(m => { return { namespace: 'storehouse',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouseType.js').then(m => { return { namespace: 'storehouseType',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Storehouse/Administration'),
@@ -190,6 +122,8 @@ models: () => [
   app: window.g_app,
 models: () => [
   import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouse.js').then(m => { return { namespace: 'storehouse',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouseType.js').then(m => { return { namespace: 'storehouseType',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Storehouse/Type'),

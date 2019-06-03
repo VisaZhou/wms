@@ -1,9 +1,4 @@
-import { stringify } from 'qs';
 import request from '@/utils/request';
-
-// export async function queryWarehouse(params) {
-//   return request(`/api/storage/list?${stringify(params)}`);
-// }
 
 export async function queryWarehouse(params) {
   return request('/api/storage/list', {

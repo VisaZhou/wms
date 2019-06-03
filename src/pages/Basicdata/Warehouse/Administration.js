@@ -505,13 +505,23 @@ class TableList extends PureComponent {
               callback: (response) => {
                 const { ret , msg } = response
                 if(ret === 1){
-                  message.error('删除失败');
+                  if(msg === 'error') {
+                    message.error('删除失败');
+                  }
+                  else {
+                    message.error(msg);
+                  }
                 }else {
                   this.setState({
                     selectedRows: [],
                   });
                   this.handleFormReset();
-                  message.success('删除成功');
+                  if(msg === 'success') {
+                    message.success('删除成功');
+                  }
+                  else {
+                    message.success(msg);
+                  }
                 }
               },
             });
@@ -588,10 +598,20 @@ class TableList extends PureComponent {
       callback: (response) => {
         const { ret , msg } = response
         if(ret === 1){
-          message.error('添加失败');
+          if(msg === 'error') {
+            message.error('删除失败');
+          }
+          else {
+            message.error(msg);
+          }
         }else {
           this.handleFormReset();
-          message.success('添加成功');
+          if(msg === 'success') {
+            message.success('删除成功');
+          }
+          else {
+            message.success(msg);
+          }
         }
       },
     });
@@ -618,10 +638,20 @@ class TableList extends PureComponent {
       callback: (response) => {
         const { ret , msg } = response
         if(ret === 1){
-          message.error('编辑失败');
+          if(msg === 'error') {
+            message.error('删除失败');
+          }
+          else {
+            message.error(msg);
+          }
         }else {
           this.handleFormReset();
-          message.success('编辑成功');
+          if(msg === 'success') {
+            message.success('删除成功');
+          }
+          else {
+            message.success(msg);
+          }
         }
       },
     });
@@ -646,10 +676,20 @@ class TableList extends PureComponent {
           callback: (response) => {
             const { ret , msg } = response
             if(ret === 1){
-              message.error('删除失败');
+              if(msg === 'error') {
+                message.error('删除失败');
+              }
+              else {
+                message.error(msg);
+              }
             }else {
-               this.handleFormReset();
-              message.success('删除成功');
+              this.handleFormReset();
+              if(msg === 'success') {
+                message.success('删除成功');
+              }
+              else {
+                message.success(msg);
+              }
             }
           },
         });

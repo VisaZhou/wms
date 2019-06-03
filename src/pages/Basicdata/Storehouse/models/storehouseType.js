@@ -1,15 +1,15 @@
 import {
-  queryWarehouseType,
-  removeWarehouseType,
-  removeWarehouseTypes,
-  addWarehouseType,
-  updateWarehouseType,
-} from '@/services/warehouse/warehouseType';
+  queryStorehouseType,
+  removeStorehouseType,
+  removeStorehouseTypes,
+  addStorehouseType,
+  updateStorehouseType,
+} from '@/services/storehouse/storehouseType';
 
 const ret = '';
 const msg = '';
 export default {
-  namespace: 'warehouseType',
+  namespace: 'storehouseType',
 
   state: {
     data: {
@@ -24,14 +24,14 @@ export default {
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(queryWarehouseType, payload);
+      const response = yield call(queryStorehouseType, payload);
       yield put({
-        type: 'warehouseType',
+        type: 'storehouseType',
         payload: response,
       });
     },
     *add({ payload, callback }, { call, put }) {
-      const response = yield call(addWarehouseType, payload);
+      const response = yield call(addStorehouseType, payload);
       yield put({
         type: 'handle',
         payload: response,
@@ -39,7 +39,7 @@ export default {
       if (callback) callback(response);
     },
     *remove({ payload, callback }, { call, put }) {
-      const response = yield call(removeWarehouseType, payload);
+      const response = yield call(removeStorehouseType, payload);
       yield put({
         type: 'handle',
         payload: response,
@@ -47,7 +47,7 @@ export default {
       if (callback) callback(response);
     },
     *batchRemove({ payload, callback }, { call, put }) {
-      const response = yield call(removeWarehouseTypes, payload);
+      const response = yield call(removeStorehouseTypes, payload);
       yield put({
         type: 'handle',
         payload: response,
@@ -55,7 +55,7 @@ export default {
       if (callback) callback(response);
     },
     *update({ payload, callback }, { call, put }) {
-      const response = yield call(updateWarehouseType, payload);
+      const response = yield call(updateStorehouseType, payload);
       yield put({
         type: 'handle',
         payload: response,
@@ -65,7 +65,7 @@ export default {
   },
 
   reducers: {
-    warehouseType(state, action) {
+    storehouseType(state, action) {
       return {
         ...state,
         data: action.payload,
