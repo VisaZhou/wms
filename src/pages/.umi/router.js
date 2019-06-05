@@ -63,6 +63,11 @@ let routes = [
 models: () => [
   import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouse.js').then(m => { return { namespace: 'warehouse',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouseType.js').then(m => { return { namespace: 'warehouseType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Warehouse/Administration'),
@@ -78,6 +83,11 @@ models: () => [
 models: () => [
   import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouse.js').then(m => { return { namespace: 'warehouse',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__Warehouse__models__warehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Warehouse/models/warehouseType.js').then(m => { return { namespace: 'warehouseType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Warehouse/Type'),
@@ -105,9 +115,13 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouse.js').then(m => { return { namespace: 'storehouse',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouseType.js').then(m => { return { namespace: 'storehouseType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Storehouse/Administration'),
@@ -121,9 +135,13 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouse.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouse.js').then(m => { return { namespace: 'storehouse',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__Storehouse__models__storehouseType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Storehouse/models/storehouseType.js').then(m => { return { namespace: 'storehouseType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Storehouse/Type'),
@@ -142,6 +160,11 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Equipment" */'../Basicdata/Equipment'),
@@ -164,7 +187,13 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__supplier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/supplier.js').then(m => { return { namespace: 'supplier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__supplierType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/supplierType.js').then(m => { return { namespace: 'supplierType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Supplier/Administration'),
@@ -178,7 +207,13 @@ models: () => [
                 "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
-  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/rule.js').then(m => { return { namespace: 'rule',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__supplier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/supplier.js').then(m => { return { namespace: 'supplier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__Supplier__models__supplierType.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/Supplier/models/supplierType.js').then(m => { return { namespace: 'supplierType',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Basicdata/Supplier/Type'),
@@ -197,6 +232,11 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Customer" */'../Basicdata/Customer'),
@@ -210,6 +250,11 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Measurement" */'../Basicdata/Measurement'),
@@ -223,6 +268,11 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Product" */'../Basicdata/Product'),
@@ -236,6 +286,11 @@ models: () => [
             "component": _dvaDynamic({
   app: window.g_app,
 models: () => [
+  import(/* webpackChunkName: 'p__Basicdata__models__carrier.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/carrier.js').then(m => { return { namespace: 'carrier',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__customer.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/customer.js').then(m => { return { namespace: 'customer',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__equipment.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/equipment.js').then(m => { return { namespace: 'equipment',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__measurement.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/measurement.js').then(m => { return { namespace: 'measurement',...m.default}}),
+  import(/* webpackChunkName: 'p__Basicdata__models__product.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/product.js').then(m => { return { namespace: 'product',...m.default}}),
   import(/* webpackChunkName: 'p__Basicdata__models__rule.js' */'D:/workspace/ant_wms/my-project/src/pages/Basicdata/models/rule.js').then(m => { return { namespace: 'rule',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "p__Basicdata__Carrier" */'../Basicdata/Carrier'),

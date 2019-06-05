@@ -230,7 +230,7 @@ class UpdateForm extends PureComponent {
       <FormItem key="storageId" label="所属仓库" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
         {form.getFieldDecorator('storageId', {
           rules: [{ required: true, message: '请选择所属仓库' }],
-          initialValue: formVals.departmentId,
+          initialValue: formVals.storageId,
         })(
           <Select placeholder="请选择" style={{ width: '100%' }}>
             {
@@ -527,7 +527,7 @@ class TableList extends PureComponent {
         const { ret , msg } = response
         if(ret === 1){
           if(msg === 'error') {
-            message.error('删除失败');
+            message.error('新增失败');
           }
           else {
             message.error(msg);
@@ -535,7 +535,7 @@ class TableList extends PureComponent {
         }else {
           this.handleFormReset();
           if(msg === 'success') {
-            message.success('删除成功');
+            message.success('新增成功');
           }
           else {
             message.success(msg);
@@ -549,7 +549,7 @@ class TableList extends PureComponent {
   handleUpdate = fields => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'warehouse/update',
+      type: 'storehouse/update',
       payload: {
           id: fields.id,
           name: fields.name,
@@ -563,7 +563,7 @@ class TableList extends PureComponent {
         const { ret , msg } = response
         if(ret === 1){
           if(msg === 'error') {
-            message.error('删除失败');
+            message.error('编辑失败');
           }
           else {
             message.error(msg);
@@ -571,7 +571,7 @@ class TableList extends PureComponent {
         }else {
           this.handleFormReset();
           if(msg === 'success') {
-            message.success('删除成功');
+            message.success('编辑成功');
           }
           else {
             message.success(msg);
@@ -745,7 +745,7 @@ class TableList extends PureComponent {
       handleUpdate: this.handleUpdate,
     };
     return (
-      <PageHeaderWrapper title="仓库管理">
+      <PageHeaderWrapper title="库位管理">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>

@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'dva';
+import moment from 'moment';
 import router from 'umi/router';
 import {
   Row,
@@ -12,58 +13,79 @@ import {
   Button,
   Dropdown,
   Menu,
-  DatePicker,
   Modal,
   message,
   Divider,
-  Steps,
-  Radio,
 } from 'antd';
 import StandardTable from '@/components/StandardTable';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
-
 import styles from './Carrier.less';
 
 const FormItem = Form.Item;
-const { Step } = Steps;
-const { TextArea } = Input;
 const { Option } = Select;
-const RadioGroup = Radio.Group;
 const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
     .join(',');
 
-const CreateForm = Form.create()(props => {
-  const { modalVisible, form, handleAdd, handleModalVisible } = props;
-  const okHandle = () => {
+@Form.create()
+class CreateForm extends PureComponent {
+  static defaultProps = {
+    handleAdd: () => {},
+    handleModalVisible: () => {},
+    values: {},
+  };
+
+  constructor(props) {
+    super(props);
+    this.formLayout = {
+      labelCol: { span: 7 },
+      wrapperCol: { span: 13 },
+    };
+  }
+
+  renderContent = () => {
+    const { form } = this.props;
+    return [
+      <FormItem key="name" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="承运商名称">
+        {form.getFieldDecorator('name', {
+          rules: [{ required: true, message: '请输入至少五个字符！', min: 5 }],
+        })(<Input placeholder="请输入" />)}
+      </FormItem>,
+    <FormItem key="remark" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="备注">
+      {form.getFieldDecorator('remark', {
+        rules: [{ required: true, message: '请输入至少五个字符！', min: 5 }],
+      })(<Input placeholder="请输入" />)}
+    </FormItem>,
+  ];
+  };
+
+  okHandle = () => {
+    const { form, handleAdd } = this.props;
     form.validateFields((err, fieldsValue) => {
       if (err) return;
       form.resetFields();
       handleAdd(fieldsValue);
     });
   };
-  return (
-    <Modal
-      destroyOnClose
-      title="新增承运商"
-      visible={modalVisible}
-      onOk={okHandle}
-      onCancel={() => handleModalVisible()}
-    >
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="承运商名称">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="备注">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-    </Modal>
-  );
-});
+
+  render() {
+    const { modalVisible, handleModalVisible } = this.props;
+    return (
+      <Modal
+        width={640}
+        bodyStyle={{ padding: '32px 40px 48px' }}
+        destroyOnClose
+        title="新增承运商"
+        visible={modalVisible}
+        onOk={this.okHandle}
+        onCancel={() => handleModalVisible()}
+      >
+        {this.renderContent()}
+      </Modal>
+    );
+  }
+}
 
 @Form.create()
 class UpdateForm extends PureComponent {
@@ -75,28 +97,21 @@ class UpdateForm extends PureComponent {
 
   constructor(props) {
     super(props);
-
     this.state = {
       formVals: {
-        name: props.values.name,
-        desc: props.values.desc,
-        key: props.values.key,
-        target: '0',
-        template: '0',
-        type: '1',
-        time: '',
-        frequency: 'month',
+        id: props.values.id,
+        number:props.values.number,
+        name:props.values.name,
+        remark:props.values.remark,
       },
-      currentStep: 0,
     };
-
     this.formLayout = {
       labelCol: { span: 7 },
       wrapperCol: { span: 13 },
     };
   }
 
-  handleNext = currentStep => {
+  handleEdit = () => {
     const { form, handleUpdate } = this.props;
     const { formVals: oldValue } = this.state;
     form.validateFields((err, fieldsValue) => {
@@ -107,200 +122,89 @@ class UpdateForm extends PureComponent {
           formVals,
         },
         () => {
-          if (currentStep < 2) {
-            this.forward();
-          } else {
-            handleUpdate(formVals);
-          }
+          handleUpdate(formVals);
         }
       );
     });
   };
 
-  backward = () => {
-    const { currentStep } = this.state;
-    this.setState({
-      currentStep: currentStep - 1,
-    });
-  };
-
-  forward = () => {
-    const { currentStep } = this.state;
-    this.setState({
-      currentStep: currentStep + 1,
-    });
-  };
-
-  renderContent = (currentStep, formVals) => {
+  renderContent = formVals => {
     const { form } = this.props;
-    if (currentStep === 1) {
-      return [
-        <FormItem key="target" {...this.formLayout} label="监控对象">
-          {form.getFieldDecorator('target', {
-            initialValue: formVals.target,
-          })(
-            <Select style={{ width: '100%' }}>
-              <Option value="0">表一</Option>
-              <Option value="1">表二</Option>
-            </Select>
-          )}
-        </FormItem>,
-        <FormItem key="template" {...this.formLayout} label="规则模板">
-          {form.getFieldDecorator('template', {
-            initialValue: formVals.template,
-          })(
-            <Select style={{ width: '100%' }}>
-              <Option value="0">规则模板一</Option>
-              <Option value="1">规则模板二</Option>
-            </Select>
-          )}
-        </FormItem>,
-        <FormItem key="type" {...this.formLayout} label="规则类型">
-          {form.getFieldDecorator('type', {
-            initialValue: formVals.type,
-          })(
-            <RadioGroup>
-              <Radio value="0">强</Radio>
-              <Radio value="1">弱</Radio>
-            </RadioGroup>
-          )}
-        </FormItem>,
-      ];
-    }
-    if (currentStep === 2) {
-      return [
-        <FormItem key="time" {...this.formLayout} label="开始时间">
-          {form.getFieldDecorator('time', {
-            rules: [{ required: true, message: '请选择开始时间！' }],
-          })(
-            <DatePicker
-              style={{ width: '100%' }}
-              showTime
-              format="YYYY-MM-DD HH:mm:ss"
-              placeholder="选择开始时间"
-            />
-          )}
-        </FormItem>,
-        <FormItem key="frequency" {...this.formLayout} label="调度周期">
-          {form.getFieldDecorator('frequency', {
-            initialValue: formVals.frequency,
-          })(
-            <Select style={{ width: '100%' }}>
-              <Option value="month">月</Option>
-              <Option value="week">周</Option>
-            </Select>
-          )}
-        </FormItem>,
-      ];
-    }
     return [
-      <FormItem key="name" {...this.formLayout} label="规则名称">
+      <FormItem key="name" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="承运商名称">
         {form.getFieldDecorator('name', {
-          rules: [{ required: true, message: '请输入规则名称！' }],
+          rules: [{ required: true, message: '请输入至少五个字符！', min: 5 }],
           initialValue: formVals.name,
         })(<Input placeholder="请输入" />)}
       </FormItem>,
-      <FormItem key="desc" {...this.formLayout} label="规则描述">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-          initialValue: formVals.desc,
-        })(<TextArea rows={4} placeholder="请输入至少五个字符" />)}
+      <FormItem key="remark" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="备注">
+        {form.getFieldDecorator('remark', {
+          rules: [{ required: true, message: '请输入至少五个字符！', min: 5 }],
+          initialValue: formVals.remark,
+        })(<Input placeholder="请输入" />)}
       </FormItem>,
     ];
   };
 
-  renderFooter = currentStep => {
+  renderFooter = () => {
     const { handleUpdateModalVisible, values } = this.props;
-    if (currentStep === 1) {
-      return [
-        <Button key="back" style={{ float: 'left' }} onClick={this.backward}>
-          上一步
-        </Button>,
-        <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
-          取消
-        </Button>,
-        <Button key="forward" type="primary" onClick={() => this.handleNext(currentStep)}>
-          下一步
-        </Button>,
-      ];
-    }
-    if (currentStep === 2) {
-      return [
-        <Button key="back" style={{ float: 'left' }} onClick={this.backward}>
-          上一步
-        </Button>,
-        <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
-          取消
-        </Button>,
-        <Button key="submit" type="primary" onClick={() => this.handleNext(currentStep)}>
-          完成
-        </Button>,
-      ];
-    }
     return [
       <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
         取消
       </Button>,
-      <Button key="forward" type="primary" onClick={() => this.handleNext(currentStep)}>
-        下一步
+      <Button key="submit" type="primary" onClick={() => this.handleEdit()}>
+        确定
       </Button>,
     ];
   };
 
   render() {
     const { updateModalVisible, handleUpdateModalVisible, values } = this.props;
-    const { currentStep, formVals } = this.state;
-
+    const { formVals } = this.state;
     return (
       <Modal
         width={640}
         bodyStyle={{ padding: '32px 40px 48px' }}
         destroyOnClose
-        title="规则配置"
+        title="编辑承运商"
         visible={updateModalVisible}
-        footer={this.renderFooter(currentStep)}
+        footer={this.renderFooter()}
         onCancel={() => handleUpdateModalVisible(false, values)}
         afterClose={() => handleUpdateModalVisible()}
       >
-        <Steps style={{ marginBottom: 28 }} size="small" current={currentStep}>
-          <Step title="基本信息" />
-          <Step title="配置规则属性" />
-          <Step title="设定调度周期" />
-        </Steps>
-        {this.renderContent(currentStep, formVals)}
+        {this.renderContent(formVals)}
       </Modal>
     );
   }
 }
 
 /* eslint react/no-multi-comp:0 */
-@connect(({ rule, loading }) => ({
-  rule,
-  loading: loading.models.rule,
+@connect(({ carrier, loading }) => ({
+  carrier,
+  loading: loading.models.carrier,
 }))
 @Form.create()
 class TableList extends PureComponent {
+  confirm  = Modal.confirm;
   state = {
     modalVisible: false,
     updateModalVisible: false,
-    expandForm: false,
     selectedRows: [],
     formValues: {},
     stepFormValues: {},
   };
-
   columns = [
     {
-      title: '编号',
-      dataIndex: 'desc',
+      title: '承运商编号',
+      dataIndex: 'number',
     },
     {
-      title: '名称',
-      dataIndex: 'desc',
+      title: '承运商名称',
+      dataIndex: 'name',
     },
     {
       title: '备注',
-      dataIndex: 'desc',
+      dataIndex: 'remark',
     },
     {
       title: '操作',
@@ -308,7 +212,7 @@ class TableList extends PureComponent {
         <Fragment>
           <a onClick={() => this.handleUpdateModalVisible(true, record)}>编辑</a>
           <Divider type="vertical" />
-          <a href="">删除</a>
+          <a onClick={() => this.handleDelete(record)}>删除</a>
         </Fragment>
       ),
     },
@@ -317,20 +221,18 @@ class TableList extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'rule/fetch',
+      type: 'carrier/fetch',
     });
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
     const { formValues } = this.state;
-
     const filters = Object.keys(filtersArg).reduce((obj, key) => {
       const newObj = { ...obj };
       newObj[key] = getValue(filtersArg[key]);
       return newObj;
     }, {});
-
     const params = {
       currentPage: pagination.current,
       pageSize: pagination.pageSize,
@@ -342,7 +244,7 @@ class TableList extends PureComponent {
     }
 
     dispatch({
-      type: 'rule/fetch',
+      type: 'carrier/fetch',
       payload: params,
     });
   };
@@ -358,34 +260,56 @@ class TableList extends PureComponent {
       formValues: {},
     });
     dispatch({
-      type: 'rule/fetch',
+      type: 'carrier/fetch',
       payload: {},
-    });
-  };
-
-  toggleForm = () => {
-    const { expandForm } = this.state;
-    this.setState({
-      expandForm: !expandForm,
     });
   };
 
   handleMenuClick = e => {
     const { dispatch } = this.props;
     const { selectedRows } = this.state;
-
     if (selectedRows.length === 0) return;
     switch (e.key) {
-      case 'remove':
-        dispatch({
-          type: 'rule/remove',
-          payload: {
-            key: selectedRows.map(row => row.key),
-          },
-          callback: () => {
-            this.setState({
-              selectedRows: [],
+      case 'batchRemove':
+        this.confirm({
+          title: '您确定要删除这些记录吗?',
+          okText: '确定',
+          okType: 'danger',
+          cancelText: '取消',
+          onOk:() => {
+            Modal.destroyAll();
+            console.log('确定');
+            dispatch({
+              type: 'carrier/batchRemove',
+              payload: {
+                ids: selectedRows.map(row => row.id),
+              },
+              callback: (response) => {
+                const { ret , msg } = response
+                if(ret === 1){
+                  if(msg === 'error') {
+                    message.error('删除失败');
+                  }
+                  else {
+                    message.error(msg);
+                  }
+                }else {
+                  this.setState({
+                    selectedRows: [],
+                  });
+                  this.handleFormReset();
+                  if(msg === 'success') {
+                    message.success('删除成功');
+                  }
+                  else {
+                    message.success(msg);
+                  }
+                }
+              },
             });
+          },
+          onCancel() {
+            console.log('取消');
           },
         });
         break;
@@ -418,13 +342,13 @@ class TableList extends PureComponent {
       });
 
       dispatch({
-        type: 'rule/fetch',
+        type: 'carrier/fetch',
         payload: values,
       });
     });
   };
 
-  handleModalVisible = flag => {
+  handleModalVisible = (flag) => {
     this.setState({
       modalVisible: !!flag,
     });
@@ -440,34 +364,107 @@ class TableList extends PureComponent {
   handleAdd = fields => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'rule/add',
+      type: 'carrier/add',
       payload: {
-        desc: fields.desc,
+        name: fields.name,
+        remark:fields.remark,
+      },
+      callback: (response) => {
+        const { ret , msg } = response
+        if(ret === 1){
+          if(msg === 'error') {
+            message.error('新增失败');
+          }
+          else {
+            message.error(msg);
+          }
+        }else {
+          this.handleFormReset();
+          if(msg === 'success') {
+            message.success('新增成功');
+          }
+          else {
+            message.success(msg);
+          }
+        }
       },
     });
-
-    message.success('添加成功');
     this.handleModalVisible();
   };
 
   handleUpdate = fields => {
     const { dispatch } = this.props;
-    const { formValues } = this.state;
     dispatch({
-      type: 'rule/update',
+      type: 'carrier/update',
       payload: {
-        query: formValues,
-        body: {
-          name: fields.name,
-          desc: fields.desc,
-          key: fields.key,
-        },
+        id: fields.id,
+        name: fields.name,
+        remark:fields.remark,
+      },
+      callback: (response) => {
+        const { ret , msg } = response
+        if(ret === 1){
+          if(msg === 'error') {
+            message.error('编辑失败');
+          }
+          else {
+            message.error(msg);
+          }
+        }else {
+          this.handleFormReset();
+          if(msg === 'success') {
+            message.success('编辑成功');
+          }
+          else {
+            message.success(msg);
+          }
+        }
       },
     });
-
-    message.success('配置成功');
     this.handleUpdateModalVisible();
   };
+
+
+  handleDelete(record) {
+    const { dispatch } = this.props;
+    this.confirm({
+      title: '您确定要删除这条记录吗?',
+      okText: '确定',
+      okType: 'danger',
+      cancelText: '取消',
+      onOk:() => {
+        console.log('OK');
+        dispatch({
+          type: 'carrier/remove',
+          payload: {
+            id: record.id,
+          },
+          callback: (response) => {
+            const { ret , msg } = response
+            if(ret === 1){
+              if(msg === 'error') {
+                message.error('删除失败');
+              }
+              else {
+                message.error(msg);
+              }
+            }else {
+              this.handleFormReset();
+              if(msg === 'success') {
+                message.success('删除成功');
+              }
+              else {
+                message.success(msg);
+              }
+            }
+          },
+        });
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  }
 
   renderSimpleForm() {
     const {
@@ -483,7 +480,7 @@ class TableList extends PureComponent {
           </Col>
           <Col md={8} sm={24}>
             <FormItem label="编号">
-              {getFieldDecorator('name')(<Input placeholder="请输入" />)}
+              {getFieldDecorator('number')(<Input placeholder="请输入" />)}
             </FormItem>
           </Col>
           <Col md={8} sm={24}>
@@ -502,23 +499,20 @@ class TableList extends PureComponent {
   }
 
   renderForm() {
-    const { expandForm } = this.state;
-    return expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
+    return this.renderSimpleForm();
   }
 
   render() {
     const {
-      rule: { data },
+      carrier: { data },
       loading,
     } = this.props;
     const { selectedRows, modalVisible, updateModalVisible, stepFormValues } = this.state;
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
-        <Menu.Item key="remove">删除</Menu.Item>
-        <Menu.Item key="approval">批量审批</Menu.Item>
+        <Menu.Item key="batchRemove">批量删除</Menu.Item>
       </Menu>
     );
-
     const parentMethods = {
       handleAdd: this.handleAdd,
       handleModalVisible: this.handleModalVisible,
@@ -538,10 +532,9 @@ class TableList extends PureComponent {
               </Button>
               {selectedRows.length > 0 && (
                 <span>
-                  <Button>批量操作</Button>
                   <Dropdown overlay={menu}>
                     <Button>
-                      更多操作 <Icon type="down" />
+                      批量操作 <Icon type="down" />
                     </Button>
                   </Dropdown>
                 </span>
@@ -549,6 +542,7 @@ class TableList extends PureComponent {
             </div>
             <StandardTable
               selectedRows={selectedRows}
+              rowKey={record => record.id}
               loading={loading}
               data={data}
               columns={this.columns}
