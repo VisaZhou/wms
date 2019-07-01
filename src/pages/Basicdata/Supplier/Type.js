@@ -379,7 +379,7 @@ class TableList extends PureComponent {
         const { ret , msg } = response
         if(ret === 1){
           if(msg === 'error') {
-            message.error('添加失败');
+            message.error('编辑失败');
           }
           else {
             message.error(msg);
@@ -387,7 +387,7 @@ class TableList extends PureComponent {
         }else {
           this.handleFormReset();
           if(msg === 'success') {
-            message.success('添加成功');
+            message.success('编辑成功');
           }
           else {
             message.success(msg);

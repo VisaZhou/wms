@@ -21,6 +21,7 @@ export default {
       });
       // Login successfully
       if (response.status === 'ok') {
+        localStorage.setItem('token', response.token);
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
@@ -53,15 +54,16 @@ export default {
         },
       });
       reloadAuthorized();
-      const { redirect } = getPageQuery();
-      // redirect
-      if (window.location.pathname !== '/user/login' && !redirect) {
+      // const { redirect } = getPageQuery();
+      if (window.location.pathname !== '/user/login'
+        // && !redirect
+      ) {
         yield put(
           routerRedux.replace({
             pathname: '/user/login',
-            search: stringify({
-              redirect: window.location.href,
-            }),
+            // search: stringify({
+            //   redirect: window.location.href,
+            // }),
           })
         );
       }

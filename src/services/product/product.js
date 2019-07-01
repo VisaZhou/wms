@@ -1,8 +1,12 @@
 import request from '@/utils/request';
 
 export async function queryProduct(params) {
-  return request('/api/production/list', {
+  return request('/api/wms/production/list', {
     method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
     data: {
       ...params,
     },
@@ -10,8 +14,12 @@ export async function queryProduct(params) {
 }
 
 export async function removeProduct(params) {
-  return request('/api/production/delete', {
+  return request('/api/wms/production/delete', {
     method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
     data: {
       ...params,
     },
@@ -19,8 +27,12 @@ export async function removeProduct(params) {
 }
 
 export async function removeProducts(params) {
-  return request('/api/production/deletes', {
+  return request('/api/wms/production/deletes', {
     method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
     data: {
       ...params,
     },
@@ -28,9 +40,13 @@ export async function removeProducts(params) {
 }
 
 export async function addProduct(params) {
-  return request(`/api/production/add`, {
-      method: 'POST',
-      data: {
+  return request(`/api/wms/production/add`, {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
+    data: {
         ...params,
       },
     }
@@ -38,8 +54,12 @@ export async function addProduct(params) {
 }
 
 export async function updateProduct(params) {
-  return request(`/api/production/edit`, {
+  return request(`/api/wms/production/edit`, {
     method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
     data: {
       ...params,
     },

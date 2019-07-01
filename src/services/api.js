@@ -104,7 +104,7 @@ export async function updateFakeList(params) {
 }
 
 export async function fakeAccountLogin(params) {
-  return request('/api/login/account', {
+  return request('/api/wms/account/login', {
     method: 'POST',
     data: params,
   });
@@ -123,4 +123,14 @@ export async function queryNotices(params = {}) {
 
 export async function getFakeCaptcha(mobile) {
   return request(`/api/captcha?mobile=${mobile}`);
+}
+
+export async function getMenu() {
+  return request('/api/wms/menu/getMenu', {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    }
+  });
 }

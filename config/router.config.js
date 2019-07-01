@@ -1,22 +1,23 @@
+
 export default [
   // user
-  // {
-  //   path: '/user',
-  //   component: '../layouts/UserLayout',
-  //   routes: [
-  //     { path: '/user', redirect: '/user/login' },
-  //     { path: '/user/login', name: 'login', component: './User/Login' },
-  //     { path: '/user/register', name: 'register', component: './User/Register' },
-  //     {
-  //       path: '/user/register-result',
-  //       name: 'register.result',
-  //       component: './User/RegisterResult',
-  //     },
-  //     {
-  //       component: '404',
-  //     },
-  //   ],
-  // },
+  {
+    path: '/user',
+    component: '../layouts/UserLayout',
+    routes: [
+      { path: '/user', redirect: '/user/login' },
+      { path: '/user/login', name: 'login', component: './User/Login' },
+      { path: '/user/register', name: 'register', component: './User/Register' },
+      {
+        path: '/user/register-result',
+        name: 'register.result',
+        component: './User/RegisterResult',
+      },
+      {
+        component: '404',
+      },
+    ],
+  },
   // // app
   // {
   //   path: '/',
@@ -300,7 +301,7 @@ export default [
   {
     path: '/',
     component: '../layouts/BasicLayout',
-    // Routes: ['src/pages/Authorized'],
+     Routes: ['src/pages/Authorized'],
     routes: [
       // 工作台
       { path: '/', redirect: '/workplace/panel' },
@@ -308,6 +309,7 @@ export default [
         path: '/workplace',
         name: 'workplace',
         icon: 'dashboard',
+        authority: ['admin'],
         routes: [
           {
             path: '/workplace/panel',
@@ -321,20 +323,24 @@ export default [
         path: '/basicdata',
         icon: 'form',
         name: 'basicdata',
+        authority: ['admin'],
         routes: [
           {
             path: '/basicdata/warehouse',
             name: 'warehouse',
+            authority: ['admin'],
             // component: './Forms/BasicForm',
             routes: [
               {
                 path: '/basicdata/warehouse',
                 redirect: '/basicdata/warehouse/administration',
+                authority: ['admin'],
               },
               {
                 path: '/basicdata/warehouse/administration',
                 name: 'administration',
                 component: './Basicdata/Warehouse/Administration',
+                authority: [],
               },
               {
                 path: '/basicdata/warehouse/type',
@@ -417,11 +423,11 @@ export default [
         path: '/operation',
         icon: 'table',
         name: 'operation',
+        authority: ['admin'],
         routes: [
           {
             path: '/operation/enter',
             name: 'enter',
-            // component: './Forms/BasicForm',
             routes: [
               {
                 path: '/operation/enter',
@@ -438,16 +444,14 @@ export default [
                 component: './Operation/Enter/Type',
               },
               {
-                path: '/operation/enter/detail',
-                name: 'detail',
-                component: './Operation/Enter/Detail',
+                path:'/operation/enter/add',
+                component:'./Operation/Enter/Add',
               },
             ],
           },
           {
             path: '/operation/out',
             name: 'out',
-            // component: './Forms/AdvancedForm',
             routes: [
               {
                 path: '/operation/out',
@@ -456,17 +460,12 @@ export default [
               {
                 path: '/operation/out/administration',
                 name: 'administration',
-                component: './Operation/Out/Administration',
+               component: './Operation/Out/Administration',
               },
               {
                 path: '/operation/out/type',
                 name: 'type',
                 component: './Operation/Out/Type',
-              },
-              {
-                path: '/operation/out/detail',
-                name: 'detail',
-                component: './Operation/Out/Detail',
               },
             ],
           },
@@ -479,28 +478,27 @@ export default [
         name: 'system',
         routes: [
           {
-            path: '/system/information',
-            name: 'information',
-            // component: './Forms/BasicForm',
+            path: '/system/systeminfo',
+            name: 'systeminfo',
             routes: [
               {
-                path: '/system/information',
-                redirect: '/system/information/virtual',
+                path: '/system/systeminfo',
+                redirect: '/system/systeminfo/virtual',
               },
               {
-                path: '/system/information/virtual',
+                path: '/system/systeminfo/virtual',
                 name: 'virtual',
-                // component: './Forms/AdvancedForm',
+                 component: './System/Systeminfo/Virtual',
               },
               {
-                path: '/system/information/server',
+                path: '/system/systeminfo/server',
                 name: 'server',
-                // component: './Forms/AdvancedForm',
+                 component: './System/Systeminfo/Server',
               },
               {
-                path: '/system/information/sql',
-                name: 'sql',
-                // component: './Forms/AdvancedForm',
+                path: '/system/systeminfo/database',
+                name: 'database',
+                 component: './System/Systeminfo/Database',
               },
             ],
           },

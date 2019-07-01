@@ -1,8 +1,7 @@
-import { stringify } from 'qs';
 import request from '@/utils/request';
 
-export async function queryDepartment(params) {
-  return request('/api/wms/department/list', {
+export async function queryOutStorage(params) {
+  return request('/api/wms/outStorage/list', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -14,8 +13,8 @@ export async function queryDepartment(params) {
   });
 }
 
-export async function removeDepartment(params) {
-  return request('/api/wms/department', {
+export async function queryScanAndCheck(params) {
+  return request('/api/wms/outStorage/scanAndCheck', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -23,13 +22,12 @@ export async function removeDepartment(params) {
     },
     data: {
       ...params,
-      method: 'delete',
     },
   });
 }
 
-export async function removeDepartments(params) {
-  return request('/api/wms/department', {
+export async function checkOutStorage(params) {
+  return request('/api/wms/outStorage/check', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -37,13 +35,12 @@ export async function removeDepartments(params) {
     },
     data: {
       ...params,
-      method: 'batchDelete',
     },
   });
 }
 
-export async function addDepartment(params) {
-  return request('/api/wms/department', {
+export async function removeOutStorage(params) {
+  return request('/api/wms/outStorage/delete', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -51,21 +48,19 @@ export async function addDepartment(params) {
     },
     data: {
       ...params,
-      method: 'post',
     },
   });
 }
 
-export async function updateDepartment(params = {}) {
-  return request(`/api/wms/department?${stringify(params.query)}`, {
+export async function removeOutStorages(params) {
+  return request('/api/wms/outStorage/deletes', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
       ...request.headers,
     },
     data: {
-      ...params.body,
-      method: 'update',
+      ...params,
     },
   });
 }

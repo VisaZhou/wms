@@ -4,6 +4,8 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 import { menu } from '../defaultSettings';
 
+import { getMenu } from '../services/api';
+
 const { check } = Authorized;
 
 // Conversion router to menu.
@@ -108,7 +110,9 @@ export default {
   },
 
   effects: {
-    *getMenuData({ payload }, { put }) {
+    *getMenuData({ payload }, { call,put }) {
+      const response = yield call( getMenu );
+      payload = response;
       const { routes, authority, path } = payload;
       const originalMenuData = memoizeOneFormatter(routes, authority, path);
       const menuData = filterMenuData(originalMenuData);
@@ -119,6 +123,21 @@ export default {
       });
     },
   },
+
+  // effects: {
+  //   *getMenuData({ payload }, { put }) {
+  //     const { routes, authority, path } = payload;
+  //     const originalMenuData = memoizeOneFormatter(routes, authority, path);
+  //     const menuData = filterMenuData(originalMenuData);
+  //     const breadcrumbNameMap = memoizeOneGetBreadcrumbNameMap(originalMenuData);
+  //     yield put({
+  //       type: 'save',
+  //       payload: { menuData, breadcrumbNameMap, routerData: routes },
+  //     });
+  //   },
+  // },
+
+
 
   reducers: {
     save(state, action) {

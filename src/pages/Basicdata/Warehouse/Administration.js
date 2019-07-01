@@ -60,7 +60,7 @@ class CreateForm extends PureComponent {
   }
 
   renderContent = () => {
-    const { form } = this.props;
+     const { form } = this.props;
     return [
       <FormItem key="name" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="仓库名称">
         {form.getFieldDecorator('name', {

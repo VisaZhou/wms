@@ -898,7 +898,7 @@ class TableList extends PureComponent {
               columns={this.columns}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
-              scroll={{ x: 2850, y: 300 }}
+              scroll={{ x: 2850}}
               mountNode
             />
           </div>

@@ -13,20 +13,16 @@ import {
   Button,
   Dropdown,
   Menu,
-  DatePicker,
   Modal,
   message,
   Divider,
-  Steps,
-  Radio, Table,
+  Table,
+  Descriptions,
 } from 'antd';
-import DescriptionList from '@/components/DescriptionList';
 import StandardTable from '@/components/StandardTable';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
-
 import styles from './Administration.less';
 
-const { Description } = DescriptionList;
 const FormItem = Form.Item;
 const { Option } = Select;
 const getValue = obj =>
@@ -34,124 +30,199 @@ const getValue = obj =>
     .map(key => obj[key])
     .join(',');
 
-
-const CreateForm = Form.create()(props => {
-  const { modalVisible, form, handleAdd, handleModalVisible } = props;
-  const okHandle = () => {
-    form.validateFields((err, fieldsValue) => {
-      if (err) return;
-      form.resetFields();
-      handleAdd(fieldsValue);
-    });
-  };
-  return (
-    <Modal
-      destroyOnClose
-      title="新增仓库"
-      visible={modalVisible}
-      onOk={okHandle}
-      onCancel={() => handleModalVisible()}
-    >
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="仓库名称">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-      <FormItem label="仓库类型" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
-        {form.getFieldDecorator('status')(
-          <Select placeholder="请选择" style={{ width: '100%' }}>
-            <Option value="0">关闭</Option>
-            <Option value="1">运行中</Option>
-          </Select>
-        )}
-      </FormItem>
-      <FormItem label="所属部门" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
-        {form.getFieldDecorator('status')(
-          <Select placeholder="请选择" style={{ width: '100%' }}>
-            <Option value="0">关闭</Option>
-            <Option value="1">运行中</Option>
-          </Select>
-        )}
-      </FormItem>
-      <FormItem key="time" label="租赁时间" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
-        {form.getFieldDecorator('time', {
-          rules: [{ required: true, message: '请选择开始时间！' }],
-        })(
-          <DatePicker
-            style={{ width: '100%' }}
-            showTime
-            format="YYYY-MM-DD HH:mm:ss"
-            placeholder="选择开始时间"
-          />
-        )}
-      </FormItem>
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="面积">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-      <FormItem label="是否禁用" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
-        {form.getFieldDecorator('status')(
-          <Select placeholder="请选择" style={{ width: '100%' }}>
-            <Option value="0">否</Option>
-            <Option value="1">是</Option>
-          </Select>
-        )}
-      </FormItem>
-      <FormItem label="是否默认" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
-        {form.getFieldDecorator('status')(
-          <Select placeholder="请选择" style={{ width: '100%' }}>
-            <Option value="0">否</Option>
-            <Option value="1">是</Option>
-          </Select>
-        )}
-      </FormItem>
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="地址">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="联系人">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="电话">
-        {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }],
-        })(<Input placeholder="请输入" />)}
-      </FormItem>
-    </Modal>
-  );
-});
-
 @Form.create()
-class UpdateForm extends PureComponent {
-
+class CreateForm extends PureComponent {
   static defaultProps = {
-    handleUpdate: () => {},
-    handleUpdateModalVisible: () => {},
+    handleAdd: () => {},
+    handleModalVisible: () => {},
     values: {},
   };
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      formVals: {
-        name: props.values.name,
-        key: props.values.key,
-      },
-    };
-
     this.formLayout = {
       labelCol: { span: 7 },
       wrapperCol: { span: 13 },
     };
   }
 
-  handleEdit = () => {
-    const { form, handleUpdate } = this.props;
+  renderContent = () => {
+    const { form } = this.props;
+    return [
+      <div className={styles.tableListForm}>
+        <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+          <Col span={12}>
+            <FormItem key="matnr" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="sku">
+              {form.getFieldDecorator('matnr', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="zsatnr" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="品号">
+              {form.getFieldDecorator('zsatnr', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="color" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="色号">
+              {form.getFieldDecorator('color', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="spec" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="规格">
+              {form.getFieldDecorator('spec', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="charg" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="批次">
+              {form.getFieldDecorator('charg', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="barcd" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="主条码">
+              {form.getFieldDecorator('barcd', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="barcdAdd" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="辅条码">
+              {form.getFieldDecorator('barcdAdd', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="rfidEpc" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="主EPC">
+              {form.getFieldDecorator('rfidEpc', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="rfidAddEpc" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="辅EPC">
+              {form.getFieldDecorator('rfidAddEpc', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="inboundIdentity" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="入库标识">
+              {form.getFieldDecorator('inboundIdentity', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="pxQtySh" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="收货箱规">
+              {form.getFieldDecorator('pxQtySh', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="pxQtyFh" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="发货箱规">
+              {form.getFieldDecorator('pxQtyFh', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="lifnr" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="交换号">
+              {form.getFieldDecorator('lifnr', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="goodsPackag" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="收货包材料">
+              {form.getFieldDecorator('goodsPackag', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="deliveryPackag" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="发货包材">
+              {form.getFieldDecorator('deliveryPackag', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="brgew" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="重量">
+              {form.getFieldDecorator('brgew', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+          <Col span={12}>
+            <FormItem key="productType" labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="产品类别">
+              {form.getFieldDecorator('productType', {
+              })(<Input placeholder="请输入" />)}
+            </FormItem>
+          </Col>
+        </Row>
+      </div>
+    ];
+  };
+
+  okHandle = () => {
+    const { form, handleAdd } = this.props;
+    form.validateFields((err, fieldsValue) => {
+      if (err) return;
+      form.resetFields();
+      handleAdd(fieldsValue);
+    });
+  };
+
+  render() {
+    const { modalVisible, handleModalVisible } = this.props;
+    return (
+      <Modal
+        width={640}
+        bodyStyle={{ padding: '32px 40px 48px' }}
+        destroyOnClose
+        title="新增入库"
+        visible={modalVisible}
+        onOk={this.okHandle}
+        onCancel={() => handleModalVisible()}
+      >
+        {this.renderContent()}
+      </Modal>
+    );
+  }
+}
+
+@connect(({ inStorage, loading }) => ({
+  inStorage,
+  loading: loading.models.inStorage,
+}))
+@Form.create()
+class ScanForm extends PureComponent {
+  static defaultProps = {
+    handleScan: () => {},
+    handleScanModalVisible: () => {},
+    values: {},
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      formVals: {
+        id: props.values.id,
+      },
+    };
+    this.formLayout = {
+      labelCol: { span: 7 },
+      wrapperCol: { span: 13 },
+    };
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'inStorage/fetchScanAndCheck',
+      payload: {
+        id: this.props.values.id,
+      },
+    });
+
+  }
+
+  handleScanInfo = () => {
+    const { form, handleScan } = this.props;
     const { formVals: oldValue } = this.state;
     form.validateFields((err, fieldsValue) => {
       if (err) return;
@@ -161,279 +232,404 @@ class UpdateForm extends PureComponent {
           formVals,
         },
         () => {
-          handleUpdate(formVals);
+          handleScan(formVals);
         }
       );
     });
   };
 
   renderContent = formVals => {
-    const { form } = this.props;
+    if(this.props.inStorage.scanAndCheck.data.status === 0){
+      this.statusInfo = '待审核';
+    }
+    else if(this.props.inStorage.scanAndCheck.data.status === 1){
+      this.statusInfo = '审核通过';
+    }
+    else if(this.props.inStorage.scanAndCheck.data.status === 2){
+      this.statusInfo = '审核失败';
+    }
+    this.createTimeInfo = moment(this.props.inStorage.scanAndCheck.data.createTime).format('YYYY-MM-DD HH:mm:ss');
+
+    const columns = [
+      {
+        title: 'SKU',
+        dataIndex: 'matnr',
+      },
+      {
+        title: '品号',
+        dataIndex: 'zsatnr',
+      },
+      {
+        title: '色号',
+        dataIndex: 'color',
+      },
+      {
+        title: '规格',
+        dataIndex: 'spec',
+      },
+      {
+        title: '批次',
+        dataIndex: 'charg',
+      },
+      {
+        title: '应发数量',
+        dataIndex: 'bookAmount',
+      },
+      {
+        title: '实发数量',
+        dataIndex: 'realAmount',
+      },
+    ];
+    const data = this.props.inStorage.scanAndCheck.list;
     return [
-      <FormItem key="name" {...this.formLayout} label="仓库类型名称">
-        {form.getFieldDecorator('name', {
-          initialValue: formVals.name,
-        })(<Input placeholder="请输入" />)}
-      </FormItem>,
+      <div id={'print'}>
+        <Descriptions title="详细信息">
+          <Descriptions.Item label="入库单号">{this.props.inStorage.scanAndCheck.data.number}</Descriptions.Item>
+          <Descriptions.Item label="入库单类型">{this.props.inStorage.scanAndCheck.data.inTypeName}</Descriptions.Item>
+          <Descriptions.Item label="状态">{this.statusInfo}</Descriptions.Item>
+          <Descriptions.Item label="供应商编号">{this.props.inStorage.scanAndCheck.data.supplierNumber}</Descriptions.Item>
+          <Descriptions.Item label="供应商名称">{this.props.inStorage.scanAndCheck.data.supplierName}</Descriptions.Item>
+          <Descriptions.Item label="联系人">{this.props.inStorage.scanAndCheck.data.contact}</Descriptions.Item>
+          <Descriptions.Item label="电话">{this.props.inStorage.scanAndCheck.data.phone}</Descriptions.Item>
+          <Descriptions.Item label="制单人">{this.props.inStorage.scanAndCheck.data.creatorName}</Descriptions.Item>
+          <Descriptions.Item label="制单日期">{this.createTimeInfo}</Descriptions.Item>
+          <Descriptions.Item label="仓库">{this.props.inStorage.scanAndCheck.data.storageName}</Descriptions.Item>
+          <Descriptions.Item label="备注">{this.props.inStorage.scanAndCheck.data.remark}</Descriptions.Item>
+        </Descriptions>,
+        <Table columns={columns} dataSource={data} size="middle" />
+      </div>
     ];
   };
 
   renderFooter = () => {
-    const { handleUpdateModalVisible, values } = this.props;
+    const { handleScanModalVisible, values } = this.props;
     return [
-      <Button key="cancel" onClick={() => handleUpdateModalVisible(false, values)}>
-        取消
+      <Button key="cancel" onClick={() => handleScanModalVisible(false, values)}>
+        关闭
       </Button>,
-      <Button key="submit" type="primary" onClick={() => this.handleEdit()}>
-        确定
+      <Button key="submit" type="primary" onClick={() => this.handleScanInfo()}>
+        打印
       </Button>,
     ];
   };
 
   render() {
-    const { updateModalVisible, handleUpdateModalVisible, values } = this.props;
-
-    const { profile = {}, loading } = this.props;
-    const { basicGoods = [], application = {} } = profile;
-    let goodsData = [];
-    if (basicGoods.length) {
-      let num = 0;
-      let amount = 0;
-      basicGoods.forEach(item => {
-        num += Number(item.num);
-        amount += Number(item.amount);
-      });
-      goodsData = basicGoods.concat({
-        id: '总计',
-        num,
-        amount,
-      });
-    }
-    const renderContent = (value, row, index) => {
-      const obj = {
-        children: value,
-        props: {},
-      };
-      if (index === basicGoods.length) {
-        obj.props.colSpan = 0;
-      }
-      return obj;
-    };
-    const goodsColumns = [
-      {
-        title: 'SKU',
-        dataIndex: 'id',
-        key: 'id',
-        render: (text, row, index) => {
-          if (index < basicGoods.length) {
-            return <a href="">{text}</a>;
-          }
-          return {
-            children: <span style={{ fontWeight: 600 }}>总计</span>,
-            props: {
-              colSpan: 4,
-            },
-          };
-        },
-      },
-      {
-        title: '品号',
-        dataIndex: 'name',
-        key: 'name',
-        render: renderContent,
-      },
-      {
-        title: '色号',
-        dataIndex: 'barcode',
-        key: 'barcode',
-        render: renderContent,
-      },
-      {
-        title: '规格',
-        dataIndex: 'price',
-        key: 'price',
-        align: 'right',
-        render: renderContent,
-      },
-      {
-        title: '批次',
-        dataIndex: 'num',
-        key: 'num',
-        align: 'right',
-        render: (text, row, index) => {
-          if (index < basicGoods.length) {
-            return text;
-          }
-          return <span style={{ fontWeight: 600 }}>{text}</span>;
-        },
-      },
-      {
-        title: '应收数量',
-        dataIndex: 'amount',
-        key: 'amount',
-        align: 'right',
-        render: (text, row, index) => {
-          if (index < basicGoods.length) {
-            return text;
-          }
-          return <span style={{ fontWeight: 600 }}>{text}</span>;
-        },
-      },
-      {
-        title: '实收数量',
-        dataIndex: 'amount',
-        key: 'amount',
-        align: 'right',
-        render: (text, row, index) => {
-          if (index < basicGoods.length) {
-            return text;
-          }
-          return <span style={{ fontWeight: 600 }}>{text}</span>;
-        },
-      },
-    ];
+    const { scanModalVisible, handleScanModalVisible, values } = this.props;
+    const { formVals } = this.state;
     return (
       <Modal
         width={1000}
         bodyStyle={{ padding: '32px 40px 48px' }}
         destroyOnClose
-        title="详细信息"
-        visible={updateModalVisible}
-         footer={this.renderFooter()}
-        onCancel={() => handleUpdateModalVisible(false, values)}
-        afterClose={() => handleUpdateModalVisible()}
+        title="查看"
+        visible={scanModalVisible}
+        footer={this.renderFooter()}
+        onCancel={() => handleScanModalVisible(false, values)}
+        afterClose={() => handleScanModalVisible()}
       >
-          <Card bordered={false}>
-            <DescriptionList size="large" title="入库信息" style={{ marginBottom: 32 }}>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;入库单号">0000000015</Description>
-              <Description term="入库单类型">收货单</Description>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态">待审核</Description>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;制单人">超管</Description>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;制单日期">2018-08-03</Description>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仓库">测试仓库3</Description>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备注">{application.childOrderNo}</Description>
-            </DescriptionList>
-            <Divider style={{ marginBottom: 32 }} />
-            <DescriptionList size="large" title="供应商信息" style={{ marginBottom: 32 }}>
-              <Description term="供应商编号">00001</Description>
-              <Description term="供应商名称">无锡品冠</Description>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系人">ZL</Description>
-              <Description term="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话">2222</Description>
-            </DescriptionList>
-            <Divider style={{ marginBottom: 32 }} />
-            <Table
-              style={{ marginBottom: 24 }}
-              pagination={false}
-              loading={loading}
-              dataSource={goodsData}
-              columns={goodsColumns}
-              rowKey="id"
-            />
-          </Card>
+        {this.renderContent(formVals)}
       </Modal>
     );
   }
 }
 
+@connect(({ inStorage, loading }) => ({
+  inStorage,
+  loading: loading.models.inStorage,
+}))
+@Form.create()
+class CheckForm extends PureComponent {
+  static defaultProps = {
+    handleCheck: () => {},
+    handleCheckModalVisible: () => {},
+    values: {},
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      formVals: {
+        id: props.values.id,
+      },
+    };
+    this.formLayout = {
+      labelCol: { span: 7 },
+      wrapperCol: { span: 13 },
+    };
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'inStorage/fetchScanAndCheck',
+      payload: {
+        id: this.props.values.id,
+      },
+    });
+
+  }
+
+  handleCheckInfo = (p) => {
+    const { form, handleCheck } = this.props;
+    const { formVals: oldValue } = this.state;
+    form.validateFields((err, fieldsValue) => {
+      if (err) return;
+      const formVals = { ...oldValue, ...fieldsValue };
+      this.setState(
+        {
+          formVals,
+        },
+        () => {
+          handleCheck(formVals,p);
+        }
+      );
+    });
+  };
+
+  renderContent = formVals => {
+    if(this.props.inStorage.scanAndCheck.data.status === 0){
+      this.statusInfo = '待审核';
+    }
+    else if(this.props.inStorage.scanAndCheck.data.status === 1){
+      this.statusInfo = '审核通过';
+    }
+    else if(this.props.inStorage.scanAndCheck.data.status === 2){
+      this.statusInfo = '审核失败';
+    }
+    this.createTimeInfo = moment(this.props.inStorage.scanAndCheck.data.createTime).format('YYYY-MM-DD HH:mm:ss');
+
+    const columns = [
+      {
+        title: 'SKU',
+        dataIndex: 'matnr',
+      },
+      {
+        title: '品号',
+        dataIndex: 'zsatnr',
+      },
+      {
+        title: '色号',
+        dataIndex: 'color',
+      },
+      {
+        title: '规格',
+        dataIndex: 'spec',
+      },
+      {
+        title: '批次',
+        dataIndex: 'charg',
+      },
+      {
+        title: '应发数量',
+        dataIndex: 'bookAmount',
+      },
+      {
+        title: '实发数量',
+        dataIndex: 'realAmount',
+      },
+    ];
+    const data = this.props.inStorage.scanAndCheck.list;
+    return [
+      <div id={'print'}>
+        <Descriptions title="详细信息">
+          <Descriptions.Item label="入库单号">{this.props.inStorage.scanAndCheck.data.number}</Descriptions.Item>
+          <Descriptions.Item label="入库单类型">{this.props.inStorage.scanAndCheck.data.inTypeName}</Descriptions.Item>
+          <Descriptions.Item label="状态">{this.statusInfo}</Descriptions.Item>
+          <Descriptions.Item label="供应商编号">{this.props.inStorage.scanAndCheck.data.supplierNumber}</Descriptions.Item>
+          <Descriptions.Item label="供应商名称">{this.props.inStorage.scanAndCheck.data.supplierName}</Descriptions.Item>
+          <Descriptions.Item label="联系人">{this.props.inStorage.scanAndCheck.data.contact}</Descriptions.Item>
+          <Descriptions.Item label="电话">{this.props.inStorage.scanAndCheck.data.phone}</Descriptions.Item>
+          <Descriptions.Item label="制单人">{this.props.inStorage.scanAndCheck.data.creatorName}</Descriptions.Item>
+          <Descriptions.Item label="制单日期">{this.createTimeInfo}</Descriptions.Item>
+          <Descriptions.Item label="仓库">{this.props.inStorage.scanAndCheck.data.storageName}</Descriptions.Item>
+          <Descriptions.Item label="备注">{this.props.inStorage.scanAndCheck.data.remark}</Descriptions.Item>
+        </Descriptions>,
+        <Table columns={columns} dataSource={data} size="middle" />
+      </div>
+    ];
+  };
+
+  renderFooter = () => {
+    const { handleCheckModalVisible, values } = this.props;
+    return [
+      <Button key="cancel" onClick={() => handleCheckModalVisible(false, values)}>
+        关闭
+      </Button>,
+      <Button key="submit" type="primary" onClick={() => this.handleCheckInfo(1)}>
+        审核通过
+      </Button>,
+      <Button key="submit" type="primary" onClick={() => this.handleCheckInfo(2)}>
+        审核不通过
+      </Button>,
+    ];
+  };
+
+  render() {
+    const { checkModalVisible, handleCheckModalVisible, values } = this.props;
+    const { formVals } = this.state;
+    return (
+      <Modal
+        width={1000}
+        bodyStyle={{ padding: '32px 40px 48px' }}
+        destroyOnClose
+        title="审核"
+        visible={checkModalVisible}
+        footer={this.renderFooter()}
+        onCancel={() => handleCheckModalVisible(false, values)}
+        afterClose={() => handleCheckModalVisible()}
+      >
+        {this.renderContent(formVals)}
+      </Modal>
+    );
+  }
+}
+
+
 /* eslint react/no-multi-comp:0 */
-@connect(({ rule, loading }) => ({
-  rule,
-  loading: loading.models.rule,
+@connect(({ inStorage, loading }) => ({
+  inStorage,
+  loading: loading.models.inStorage,
 }))
 @Form.create()
 class TableList extends PureComponent {
+  confirm  = Modal.confirm;
   state = {
     modalVisible: false,
     updateModalVisible: false,
-    expandForm: false,
     selectedRows: [],
     formValues: {},
     stepFormValues: {},
   };
-
   columns = [
     {
       title: '入库单号',
-      dataIndex: 'name',
-      render: text => <a onClick={() => this.previewItem(text)}>{text}</a>,
+      width: 150,
+      dataIndex: 'number',
+      fixed: 'left',
     },
     {
       title: '仓库',
-      dataIndex: 'desc',
-    },
-    {
-      title: '应收数量',
-      dataIndex: 'desc',
-    },
-    {
-      title: '实收数量',
-      dataIndex: 'desc',
+      width: 150,
+      key:'1',
+      dataIndex: 'storageName',
     },
     {
       title: '入库类型',
-      dataIndex: 'desc',
+      width: 150,
+      key:'2',
+      dataIndex: 'inTypeName',
+    },
+    {
+      title: '应收数量',
+      dataIndex: 'bookAmount',
+      key: '3',
+      width: 150,
+    },
+    {
+      title: '实收数量',
+      dataIndex: 'realAmount',
+      key: '4',
+      width: 150,
     },
     {
       title: '供应商',
-      dataIndex: 'desc',
+      dataIndex: 'supplierName',
+      key: '5',
+      width: 150,
     },
     {
       title: '制单人',
-      dataIndex: 'desc',
+      dataIndex: 'creatorName',
+      key: '6',
+      width: 150,
     },
     {
       title: '制单时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
+      dataIndex: 'createTime',
+      key: '7',
+      width: 200,
       render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
     },
     {
       title: '状态',
-      dataIndex: 'desc',
+      dataIndex: 'status',
+      key: '8',
+      width: 150,
+      render: val =>{
+        if(val === 0){
+          return '待审核'
+        }
+        else if(val === 1){
+          return '审核通过'
+        }
+        else if(val === 2){
+          return '审核失败'
+        }
+      }
     },
     {
       title: '审核人',
-      dataIndex: 'desc',
+      dataIndex: 'auditorName',
+      key: '9',
+      width: 150,
     },
     {
       title: '审核时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
+      dataIndex: 'auditTime',
+      key: '10',
+      width: 200,
       render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
     },
+
     {
       title: '操作',
-      render: (text, record) => (
-        <Fragment>
-          <a onClick={() => this.handleUpdateModalVisible(true, record)}>查看</a>
-          <Divider type="vertical" />
-          <a onClick={() => this.handleUpdateModalVisible(true, record)}>编辑</a>
-          <Divider type="vertical" />
-          <a onClick={() => this.handleUpdateModalVisible(true, record)}>审核</a>
-          <Divider type="vertical" />
-          <a href="">删除</a>
-        </Fragment>
-      ),
+      fixed: 'right',
+      width: 200,
+      render: (text, record) => {
+        if(record.status === 1){
+          return(
+            <Fragment>
+              <a onClick={() => this.handleScanModalVisible(true, record)}>查看</a>
+              <Divider type="vertical"/>
+              <a onClick={() => this.handleDelete(record)}>删除</a>
+            </Fragment>
+          )
+        }
+        else {
+          return(
+            <Fragment>
+              <a onClick={() => this.handleScanModalVisible(true, record)}>查看</a>
+              <Divider type="vertical"/>
+              <a onClick={() => this.handleDelete(record)}>删除</a>
+              <Divider type="vertical"/>
+              <a onClick={() => this.handleCheckModalVisible(true, record)}>审核</a>
+              <Divider type="vertical"/>
+              <a onClick={() => this.handleUpdateModalVisible(true, record)}>编辑</a>
+            </Fragment>
+          )
+        }
+      }
     },
   ];
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'rule/fetch',
+      type: 'inStorage/fetch',
+    });
+    dispatch({
+      type: 'inStorage/fetchType',
     });
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
     const { formValues } = this.state;
-
     const filters = Object.keys(filtersArg).reduce((obj, key) => {
       const newObj = { ...obj };
       newObj[key] = getValue(filtersArg[key]);
       return newObj;
     }, {});
-
     const params = {
       currentPage: pagination.current,
       pageSize: pagination.pageSize,
@@ -445,7 +641,7 @@ class TableList extends PureComponent {
     }
 
     dispatch({
-      type: 'rule/fetch',
+      type: 'inStorage/fetch',
       payload: params,
     });
   };
@@ -461,7 +657,7 @@ class TableList extends PureComponent {
       formValues: {},
     });
     dispatch({
-      type: 'rule/fetch',
+      type: 'inStorage/fetch',
       payload: {},
     });
   };
@@ -476,19 +672,48 @@ class TableList extends PureComponent {
   handleMenuClick = e => {
     const { dispatch } = this.props;
     const { selectedRows } = this.state;
-
     if (selectedRows.length === 0) return;
     switch (e.key) {
-      case 'remove':
-        dispatch({
-          type: 'rule/remove',
-          payload: {
-            key: selectedRows.map(row => row.key),
-          },
-          callback: () => {
-            this.setState({
-              selectedRows: [],
+      case 'batchRemove':
+        this.confirm({
+          title: '您确定要删除这些记录吗?',
+          okText: '确定',
+          okType: 'danger',
+          cancelText: '取消',
+          onOk:() => {
+            Modal.destroyAll();
+            console.log('确定');
+            dispatch({
+              type: 'inStorage/batchRemove',
+              payload: {
+                ids: selectedRows.map(row => row.id),
+              },
+              callback: (response) => {
+                const { ret , msg } = response
+                if(ret === 1){
+                  if(msg === 'error') {
+                    message.error('删除失败');
+                  }
+                  else {
+                    message.error(msg);
+                  }
+                }else {
+                  this.setState({
+                    selectedRows: [],
+                  });
+                  this.handleFormReset();
+                  if(msg === 'success') {
+                    message.success('删除成功');
+                  }
+                  else {
+                    message.success(msg);
+                  }
+                }
+              },
             });
+          },
+          onCancel() {
+            console.log('取消');
           },
         });
         break;
@@ -521,21 +746,28 @@ class TableList extends PureComponent {
       });
 
       dispatch({
-        type: 'rule/fetch',
+        type: 'inStorage/fetch',
         payload: values,
       });
     });
   };
 
-  handleModalVisible = flag => {
+  handleModalVisible = (flag) => {
     this.setState({
       modalVisible: !!flag,
     });
   };
 
-  handleUpdateModalVisible = (flag, record) => {
+  handleScanModalVisible = (flag, record) => {
     this.setState({
-      updateModalVisible: !!flag,
+      scanModalVisible: !!flag,
+      stepFormValues: record || {},
+    });
+  };
+
+  handleCheckModalVisible = (flag, record) => {
+    this.setState({
+      checkModalVisible: !!flag,
       stepFormValues: record || {},
     });
   };
@@ -543,34 +775,126 @@ class TableList extends PureComponent {
   handleAdd = fields => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'rule/add',
+      type: 'inStorage/add',
       payload: {
-        desc: fields.desc,
+        matnr:fields.matnr,
+        zsatnr:fields.zsatnr,
+        color: fields.color,
+        spec: fields.spec,
+        charg: fields.charg,
+        barcd: fields.barcd,
+        barcdAdd: fields.barcdAdd,
+        rfidEpc: fields.rfidEpc,
+        rfidAddEpc: fields.rfidAddEpc,
+        inboundIdentity: fields.inboundIdentity,
+        pxQtySh: fields.pxQtySh,
+        pxQtyFh: fields.pxQtyFh,
+        lifnr: fields.lifnr,
+        goodsPackag: fields.goodsPackag,
+        deliveryPackag: fields.deliveryPackag,
+        brgew: fields.brgew,
+        productType: fields.productType,
+      },
+      callback: (response) => {
+        const { ret , msg } = response
+        if(ret === 1){
+          if(msg === 'error') {
+            message.error('新增失败');
+          }
+          else {
+            message.error(msg);
+          }
+        }else {
+          this.handleFormReset();
+          if(msg === 'success') {
+            message.success('新增成功');
+          }
+          else {
+            message.success(msg);
+          }
+        }
       },
     });
-
-    message.success('添加成功');
     this.handleModalVisible();
   };
 
-  handleUpdate = fields => {
+  handleScan = () => {
+    window.document.body.innerHTML = window.document.getElementById('print').innerHTML;
+    window.print();
+    window.location.reload();
+  };
+
+  handleCheck = (fields,p) => {
     const { dispatch } = this.props;
-    const { formValues } = this.state;
     dispatch({
-      type: 'rule/update',
+      type: 'inStorage/check',
       payload: {
-        query: formValues,
-        body: {
-          name: fields.name,
-          desc: fields.desc,
-          key: fields.key,
-        },
+        id:fields.id,
+        status:p,
+      },
+      callback: (response) => {
+        const { ret , msg } = response
+        if(ret === 1){
+          if(msg === 'error') {
+            message.error('审核状态修改失败');
+          }
+          else {
+            message.error(msg);
+          }
+        }else {
+          this.handleFormReset();
+          if(msg === 'success') {
+            message.success('审核状态修改成功');
+          }
+          else {
+            message.success(msg);
+          }
+        }
       },
     });
-
-    message.success('配置成功');
-    this.handleUpdateModalVisible();
+    this.handleCheckModalVisible();
   };
+
+  handleDelete(record) {
+    const { dispatch } = this.props;
+    this.confirm({
+      title: '您确定要删除这条记录吗?',
+      okText: '确定',
+      okType: 'danger',
+      cancelText: '取消',
+      onOk:() => {
+        console.log('OK');
+        dispatch({
+          type: 'inStorage/remove',
+          payload: {
+            id: record.id,
+          },
+          callback: (response) => {
+            const { ret , msg } = response
+            if(ret === 1){
+              if(msg === 'error') {
+                message.error('删除失败');
+              }
+              else {
+                message.error(msg);
+              }
+            }else {
+              this.handleFormReset();
+              if(msg === 'success') {
+                message.success('删除成功');
+              }
+              else {
+                message.success(msg);
+              }
+            }
+          },
+        });
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  }
 
   renderSimpleForm() {
     const {
@@ -581,12 +905,12 @@ class TableList extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
           <Col md={8} sm={24}>
             <FormItem label="单号">
-              {getFieldDecorator('name')(<Input placeholder="请输入" />)}
+              {getFieldDecorator('number')(<Input placeholder="请输入" />)}
             </FormItem>
           </Col>
           <Col md={8} sm={24}>
             <FormItem label="供应商名称">
-              {getFieldDecorator('name')(<Input placeholder="请输入" />)}
+              {getFieldDecorator('supplierName')(<Input placeholder="请输入" />)}
             </FormItem>
           </Col>
           <Col md={8} sm={24}>
@@ -616,20 +940,23 @@ class TableList extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
           <Col md={8} sm={24}>
             <FormItem label="单号">
-              {getFieldDecorator('name')(<Input placeholder="请输入" />)}
+              {getFieldDecorator('number')(<Input placeholder="请输入" />)}
             </FormItem>
           </Col>
           <Col md={8} sm={24}>
             <FormItem label="供应商名称">
-              {getFieldDecorator('name')(<Input placeholder="请输入" />)}
+              {getFieldDecorator('supplierName')(<Input placeholder="请输入" />)}
             </FormItem>
           </Col>
           <Col md={8} sm={24}>
             <FormItem label="单据类型">
-              {getFieldDecorator('status')(
+              {getFieldDecorator('inType')(
                 <Select placeholder="请选择" style={{ width: '100%' }}>
-                  <Option value="0">关闭</Option>
-                  <Option value="1">运行中</Option>
+                  {
+                    (this.props.inStorage.type.list || []).map((item,index)=>{
+                      return <Option key={index} value={item.id}>{item.name}</Option>
+                    })
+                  }
                 </Select>
               )}
             </FormItem>
@@ -638,8 +965,9 @@ class TableList extends PureComponent {
             <FormItem label="状态">
               {getFieldDecorator('status')(
                 <Select placeholder="请选择" style={{ width: '100%' }}>
-                  <Option value="0">关闭</Option>
-                  <Option value="1">运行中</Option>
+                    <Option value={0}>待审核</Option>
+                    <Option value={1}>审核通过</Option>
+                    <Option value={2}>审核失败</Option>
                 </Select>
               )}
             </FormItem>
@@ -666,28 +994,28 @@ class TableList extends PureComponent {
     const { expandForm } = this.state;
     return expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
   }
-
   render() {
     const {
-      rule: { data },
+      inStorage: { data },
       loading,
     } = this.props;
-    const { selectedRows, modalVisible, updateModalVisible, stepFormValues } = this.state;
+    const { selectedRows, modalVisible, scanModalVisible, checkModalVisible, stepFormValues } = this.state;
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
-        <Menu.Item key="remove">删除</Menu.Item>
-        <Menu.Item key="approval">批量审批</Menu.Item>
+        <Menu.Item key="batchRemove">批量删除</Menu.Item>
       </Menu>
     );
-
     const parentMethods = {
       handleAdd: this.handleAdd,
       handleModalVisible: this.handleModalVisible,
-      data:this.props,
     };
-    const updateMethods = {
-      handleUpdateModalVisible: this.handleUpdateModalVisible,
-      handleUpdate: this.handleUpdate,
+    const scanMethods = {
+      handleScanModalVisible: this.handleScanModalVisible,
+      handleScan: this.handleScan,
+    };
+    const checkMethods = {
+      handleCheckModalVisible: this.handleCheckModalVisible,
+      handleCheck: this.handleCheck,
     };
     return (
       <PageHeaderWrapper title="入库管理">
@@ -700,10 +1028,9 @@ class TableList extends PureComponent {
               </Button>
               {selectedRows.length > 0 && (
                 <span>
-                  <Button>批量操作</Button>
                   <Dropdown overlay={menu}>
                     <Button>
-                      更多操作 <Icon type="down" />
+                      批量操作 <Icon type="down" />
                     </Button>
                   </Dropdown>
                 </span>
@@ -711,21 +1038,23 @@ class TableList extends PureComponent {
             </div>
             <StandardTable
               selectedRows={selectedRows}
+              rowKey={record => record.id}
               loading={loading}
               data={data}
               columns={this.columns}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
+              scroll={{ x: 1950}}
+              mountNode
             />
           </div>
         </Card>
         <CreateForm {...parentMethods} modalVisible={modalVisible} />
         {stepFormValues && Object.keys(stepFormValues).length ? (
-          <UpdateForm
-            {...updateMethods}
-            updateModalVisible={updateModalVisible}
-            values={stepFormValues}
-          />
+          <ScanForm{...scanMethods} scanModalVisible={scanModalVisible} values={stepFormValues}/>
+        ) : null}
+        {stepFormValues && Object.keys(stepFormValues).length ? (
+          <CheckForm{...checkMethods} checkModalVisible={checkModalVisible} values={stepFormValues}/>
         ) : null}
       </PageHeaderWrapper>
     );

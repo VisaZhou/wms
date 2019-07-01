@@ -1,8 +1,7 @@
-import { stringify } from 'qs';
 import request from '@/utils/request';
 
-export async function queryDepartment(params) {
-  return request('/api/wms/department/list', {
+export async function queryOutStorageType(params) {
+  return request('/api/wms/outStorageType/list', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -14,8 +13,8 @@ export async function queryDepartment(params) {
   });
 }
 
-export async function removeDepartment(params) {
-  return request('/api/wms/department', {
+export async function removeOutStorageType(params) {
+  return request('/api/wms/outStorageType/delete', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -23,13 +22,12 @@ export async function removeDepartment(params) {
     },
     data: {
       ...params,
-      method: 'delete',
     },
   });
 }
 
-export async function removeDepartments(params) {
-  return request('/api/wms/department', {
+export async function removeOutStorageTypes(params) {
+  return request('/api/wms/outStorageType/deletes', {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -37,13 +35,26 @@ export async function removeDepartments(params) {
     },
     data: {
       ...params,
-      method: 'batchDelete',
     },
   });
 }
 
-export async function addDepartment(params) {
-  return request('/api/wms/department', {
+export async function addOutStorageType(params) {
+  return request(`/api/wms/outStorageType/add`, {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
+    data: {
+        ...params,
+      },
+    }
+  );
+}
+
+export async function updateOutStorageType(params) {
+  return request(`/api/wms/outStorageType/edit`, {
     method: 'POST',
     headers:{
       'token': window.localStorage.getItem('token'),
@@ -51,21 +62,6 @@ export async function addDepartment(params) {
     },
     data: {
       ...params,
-      method: 'post',
-    },
-  });
-}
-
-export async function updateDepartment(params = {}) {
-  return request(`/api/wms/department?${stringify(params.query)}`, {
-    method: 'POST',
-    headers:{
-      'token': window.localStorage.getItem('token'),
-      ...request.headers,
-    },
-    data: {
-      ...params.body,
-      method: 'update',
     },
   });
 }
