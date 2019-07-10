@@ -72,7 +72,7 @@ export default {
   'menu.system.systeminfo.server': '服务器信息',
   'menu.system.systeminfo.database': '数据库信息',
   'menu.system.authentication': '认证管理',
-  'menu.system.authentication.user': '用户管理',
+  'menu.system.authentication.userinfo': '用户管理',
   'menu.system.authentication.role': '角色管理',
-  'menu.system.authentication.auth': '权限管理',
+  'menu.system.authentication.permission': '权限管理',
 };

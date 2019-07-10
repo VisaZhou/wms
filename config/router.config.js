@@ -447,6 +447,10 @@ export default [
                 path:'/operation/enter/add',
                 component:'./Operation/Enter/Add',
               },
+              {
+                path:'/operation/enter/edit',
+                component:'./Operation/Enter/Edit',
+              },
             ],
           },
           {
@@ -466,6 +470,14 @@ export default [
                 path: '/operation/out/type',
                 name: 'type',
                 component: './Operation/Out/Type',
+              },
+              {
+                path:'/operation/out/add',
+                component:'./Operation/Out/Add',
+              },
+              {
+                path:'/operation/out/edit',
+                component:'./Operation/Out/Edit',
               },
             ],
           },
@@ -505,26 +517,25 @@ export default [
           {
             path: '/system/authentication',
             name: 'authentication',
-            // component: './Forms/AdvancedForm',
             routes: [
               {
                 path: '/system/authentication',
                 redirect: '/system/authentication/user',
               },
               {
-                path: '/system/authentication/user',
-                name: 'user',
-                // component: './Forms/AdvancedForm',
+                path: '/system/authentication/userinfo',
+                name: 'userinfo',
+                component: './System/Authentication/Userinfo',
               },
               {
                 path: '/system/authentication/role',
                 name: 'role',
-                // component: './Forms/AdvancedForm',
+                component: './System/Authentication/Role',
               },
               {
-                path: '/system/authentication/auth',
-                name: 'auth',
-                // component: './Forms/AdvancedForm',
+                path: '/system/authentication/permission',
+                name: 'permission',
+                component: './System/Authentication/Permission',
               },
             ],
           },

@@ -64,3 +64,29 @@ export async function removeOutStorages(params) {
     },
   });
 }
+
+export async function addOutStorage(params) {
+  return request('/api/wms/outStorage/add', {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
+    data: {
+      ...params,
+    },
+  });
+}
+
+export async function updateOutStorage(params) {
+  return request('/api/wms/outStorage/edit', {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
+    data: {
+      ...params,
+    },
+  });
+}

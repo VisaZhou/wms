@@ -22,6 +22,8 @@ export default {
       // Login successfully
       if (response.status === 'ok') {
         localStorage.setItem('token', response.token);
+        localStorage.setItem("currentUser",response.currentUser.name.toString());
+        localStorage.setItem("currentUserId",response.currentUser.id.toString());
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();

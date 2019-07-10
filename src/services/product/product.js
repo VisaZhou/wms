@@ -13,6 +13,19 @@ export async function queryProduct(params) {
   });
 }
 
+export async function queryProductInfo(params) {
+  return request('/api/wms/production/outStorageList', {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
+    data: {
+      ...params,
+    },
+  });
+}
+
 export async function removeProduct(params) {
   return request('/api/wms/production/delete', {
     method: 'POST',

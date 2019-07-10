@@ -65,4 +65,30 @@ export async function removeInStorages(params) {
   });
 }
 
+export async function addInStorage(params) {
+  return request('/api/wms/inStorage/add', {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
+    data: {
+      ...params,
+    },
+  });
+}
+
+export async function updateInStorage(params) {
+  return request('/api/wms/inStorage/edit', {
+    method: 'POST',
+    headers:{
+      'token': window.localStorage.getItem('token'),
+      ...request.headers,
+    },
+    data: {
+      ...params,
+    },
+  });
+}
+
 

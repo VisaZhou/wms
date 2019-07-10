@@ -612,7 +612,7 @@ class TableList extends PureComponent {
               <Divider type="vertical"/>
               <a onClick={() => this.handleCheckModalVisible(true, record)}>审核</a>
               <Divider type="vertical"/>
-              <a onClick={() => this.handleUpdateModalVisible(true, record)}>编辑</a>
+              <a onClick={() => window.location.href = "/operation/out/edit?id="+record.id+""}>编辑</a>
             </Fragment>
           )
         }
@@ -1033,7 +1033,7 @@ class TableList extends PureComponent {
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>
+              <Button icon="plus" type="primary" onClick={() => window.location.href = "/operation/out/add"}>
                 新建
               </Button>
               {selectedRows.length > 0 && (

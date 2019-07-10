@@ -406,6 +406,8 @@ models: () => [
   app: window.g_app,
 models: () => [
   import(/* webpackChunkName: 'p__Operation__Enter__models__inStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorage.js').then(m => { return { namespace: 'inStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageAdd.js').then(m => { return { namespace: 'inStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageEdit.js').then(m => { return { namespace: 'inStorageEdit',...m.default}}),
   import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageType.js').then(m => { return { namespace: 'inStorageType',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Enter/Administration'),
@@ -420,6 +422,8 @@ models: () => [
   app: window.g_app,
 models: () => [
   import(/* webpackChunkName: 'p__Operation__Enter__models__inStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorage.js').then(m => { return { namespace: 'inStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageAdd.js').then(m => { return { namespace: 'inStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageEdit.js').then(m => { return { namespace: 'inStorageEdit',...m.default}}),
   import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageType.js').then(m => { return { namespace: 'inStorageType',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Enter/Type'),
@@ -433,9 +437,26 @@ models: () => [
   app: window.g_app,
 models: () => [
   import(/* webpackChunkName: 'p__Operation__Enter__models__inStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorage.js').then(m => { return { namespace: 'inStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageAdd.js').then(m => { return { namespace: 'inStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageEdit.js').then(m => { return { namespace: 'inStorageEdit',...m.default}}),
   import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageType.js').then(m => { return { namespace: 'inStorageType',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Enter/Add'),
+  LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
+}),
+                "exact": true
+              },
+              {
+                "path": "/operation/enter/edit",
+                "component": _dvaDynamic({
+  app: window.g_app,
+models: () => [
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorage.js').then(m => { return { namespace: 'inStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageAdd.js').then(m => { return { namespace: 'inStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageEdit.js').then(m => { return { namespace: 'inStorageEdit',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Enter__models__inStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Enter/models/inStorageType.js').then(m => { return { namespace: 'inStorageType',...m.default}})
+],
+  component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Enter/Edit'),
   LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
@@ -461,6 +482,8 @@ models: () => [
   app: window.g_app,
 models: () => [
   import(/* webpackChunkName: 'p__Operation__Out__models__outStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorage.js').then(m => { return { namespace: 'outStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageAdd.js').then(m => { return { namespace: 'outStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageEdit.js').then(m => { return { namespace: 'outStorageEdit',...m.default}}),
   import(/* webpackChunkName: 'p__Operation__Out__models__outStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageType.js').then(m => { return { namespace: 'outStorageType',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Out/Administration'),
@@ -475,9 +498,41 @@ models: () => [
   app: window.g_app,
 models: () => [
   import(/* webpackChunkName: 'p__Operation__Out__models__outStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorage.js').then(m => { return { namespace: 'outStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageAdd.js').then(m => { return { namespace: 'outStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageEdit.js').then(m => { return { namespace: 'outStorageEdit',...m.default}}),
   import(/* webpackChunkName: 'p__Operation__Out__models__outStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageType.js').then(m => { return { namespace: 'outStorageType',...m.default}})
 ],
   component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Out/Type'),
+  LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
+}),
+                "exact": true
+              },
+              {
+                "path": "/operation/out/add",
+                "component": _dvaDynamic({
+  app: window.g_app,
+models: () => [
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorage.js').then(m => { return { namespace: 'outStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageAdd.js').then(m => { return { namespace: 'outStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageEdit.js').then(m => { return { namespace: 'outStorageEdit',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageType.js').then(m => { return { namespace: 'outStorageType',...m.default}})
+],
+  component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Out/Add'),
+  LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
+}),
+                "exact": true
+              },
+              {
+                "path": "/operation/out/edit",
+                "component": _dvaDynamic({
+  app: window.g_app,
+models: () => [
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorage.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorage.js').then(m => { return { namespace: 'outStorage',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageAdd.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageAdd.js').then(m => { return { namespace: 'outStorageAdd',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageEdit.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageEdit.js').then(m => { return { namespace: 'outStorageEdit',...m.default}}),
+  import(/* webpackChunkName: 'p__Operation__Out__models__outStorageType.js' */'D:/workspace/ant_design_pro/my-project/src/pages/Operation/Out/models/outStorageType.js').then(m => { return { namespace: 'outStorageType',...m.default}})
+],
+  component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../Operation/Out/Edit'),
   LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
 }),
                 "exact": true
@@ -566,18 +621,42 @@ models: () => [
                 "exact": true
               },
               {
-                "path": "/system/authentication/user",
-                "name": "user",
+                "path": "/system/authentication/userinfo",
+                "name": "userinfo",
+                "component": _dvaDynamic({
+  app: window.g_app,
+models: () => [
+  import(/* webpackChunkName: 'p__System__Authentication__models__userinfo.js' */'D:/workspace/ant_design_pro/my-project/src/pages/System/Authentication/models/userinfo.js').then(m => { return { namespace: 'userinfo',...m.default}})
+],
+  component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../System/Authentication/Userinfo'),
+  LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
+}),
                 "exact": true
               },
               {
                 "path": "/system/authentication/role",
                 "name": "role",
+                "component": _dvaDynamic({
+  app: window.g_app,
+models: () => [
+  import(/* webpackChunkName: 'p__System__Authentication__models__userinfo.js' */'D:/workspace/ant_design_pro/my-project/src/pages/System/Authentication/models/userinfo.js').then(m => { return { namespace: 'userinfo',...m.default}})
+],
+  component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../System/Authentication/Role'),
+  LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
+}),
                 "exact": true
               },
               {
-                "path": "/system/authentication/auth",
-                "name": "auth",
+                "path": "/system/authentication/permission",
+                "name": "permission",
+                "component": _dvaDynamic({
+  app: window.g_app,
+models: () => [
+  import(/* webpackChunkName: 'p__System__Authentication__models__userinfo.js' */'D:/workspace/ant_design_pro/my-project/src/pages/System/Authentication/models/userinfo.js').then(m => { return { namespace: 'userinfo',...m.default}})
+],
+  component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../System/Authentication/Permission'),
+  LoadingComponent: require('D:/workspace/ant_design_pro/my-project/src/components/PageLoading/index').default,
+}),
                 "exact": true
               },
               {
